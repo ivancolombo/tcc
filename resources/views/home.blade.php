@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <iframe src="https://meet.jit.si/**NOMEDASALA**" style="border:0px #ffffff none;" name="Jitsi" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" height="700px" width="100%" allowfullscreen allow='camera; microphone'></iframe>
                 </div>
             </div>
         </div>
