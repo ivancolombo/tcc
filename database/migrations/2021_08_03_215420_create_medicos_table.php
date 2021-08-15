@@ -17,9 +17,7 @@ class CreateMedicosTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->timestamps();
-            $table->string('nome', 255);
             $table->string('telefone', 11);
-            $table->string('email', 100);
             $table->string('especialidade', 255);
             $table->string('crm', 255);
             $table->string('foto', 255);

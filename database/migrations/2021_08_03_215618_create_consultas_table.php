@@ -18,8 +18,9 @@ class CreateConsultasTable extends Migration
             $table->foreignId('paciente_id');
             $table->foreignId('medico_id');            
             $table->string('status', 255);
-            $table->date('data');
+            $table->dateTime('data', 0);
             $table->text('descricao');
+            $table->text('sala_id');
         });
     }
 
