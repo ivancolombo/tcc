@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
+
+Route::group(['prefix' => 'medicos'], function() {
+    Route::get('/novo', 'MedicoController@create');
+});
