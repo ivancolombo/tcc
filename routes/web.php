@@ -18,5 +18,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::group(['prefix' => 'medicos'], function() {
+    Route::get('/', 'MedicoController@index');
     Route::get('/novo', 'MedicoController@create');
 });
