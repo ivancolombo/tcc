@@ -38,7 +38,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="password">Comfirmar senha</label>
+                    <label for="password">Confirmar senha</label>
                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                     @error('password')
                         <small class="text-danger">{{ $message }}</small>

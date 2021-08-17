@@ -11,45 +11,40 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Médicos</h3>
+            <div class="card-tools">
+                <a href="{{ url('/medicos/novo') }}" class="btn btn-primary btn-sm">Novo</a>
+            </div>
         </div>
         <div class="card-body">
-            <table id="dataTable" class="table table-bordered table-hover dataTable dtr-inline w-100">
+            <table id="dataTable" class="display responsive nowrap table table-bordered table-hover dtr-inline w-100">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Especialidade</th>
+                        <th>CRM</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>João Da Silva</td>
+                        <td>joao@email.com</td>
+                        <td>Pediatra</td>
+                        <td>12345-SC</td>
                     </tr>
                     <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
+                        <td>Maria Da Silva</td>
+                        <td>maria@email.com</td>
+                        <td>Clinico Geral</td>
+                        <td>54321-SC</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Especialidade</th>
+                        <th>CRM</th>
                     </tr>
                 </tfoot>
             </table>
@@ -83,7 +78,18 @@
                         sSortDescending: ": Ordenar colunas de forma descendente"
                     },
                     decimal: ",",
-                    thousands: "."
+                    thousands: ".",
+                    responsive: {
+                        details: {
+                            type: 'column'
+                        }
+                    },
+                    columnDefs: [{
+                        className: 'dtr-control',
+                        orderable: false,
+                        targets: 0
+                    }],
+                    order: [1, 'asc']
                 }
             });
         });
