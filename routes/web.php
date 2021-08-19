@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'medicos'], function() {
     Route::get('/', 'MedicoController@index');
-    Route::get('/novo', 'MedicoController@create');
+    Route::get('/novo', 'MedicoController@create')->middleware('tipo:admin');
 });
