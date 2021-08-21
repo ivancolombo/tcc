@@ -8,6 +8,14 @@
     </div>
 @stop
 @section('content')
+    @if (Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show text-center col-md-12" role="alert">
+            {{ Session::get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Médicos</h3>
@@ -23,33 +31,21 @@
                         <th>E-mail</th>
                         <th>Especialidade</th>
                         <th>CRM</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>João Da Silva</td>
-                        <td>joao@email.com</td>
-                        <td>Pediatra</td>
-                        <td>12345-SC</td>
-                    </tr>
-                    <tr>
-                        <td>Maria Da Silva</td>
-                        <td>maria@email.com</td>
-                        <td>Clinico Geral</td>
-                        <td>54321-SC</td>
-                    </tr>
-                </tbody>
                 <tfoot>
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
                         <th>Especialidade</th>
                         <th>CRM</th>
+                        <th></th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-    </div>
+    </div>    
 @stop
 @section('js')
     <script>
@@ -79,18 +75,49 @@
                     },
                     decimal: ",",
                     thousands: ".",
-                    responsive: {
-                        details: {
-                            type: 'column'
+                },
+                responsive: {
+                    details: {
+                        type: 'column'
+                    }
+                },
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('medicos/list') }}",
+                columns: [                    
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'email'
+                    },
+                    {
+                        data: 'medico.especialidade.nome'
+                    },
+                    {
+                        data: 'medico.crm'
+                    },
+                    {
+                        data: null,                        
+                        orderable: false,
+                        render: function(data, type, row, meta) {
+                            console.log(row);
+                            let campo = `<div>
+                                            <a class="btn btn-primary btn-sm" href="medicos/${row.id}/editar">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </div>`;
+                            
+                            return campo;
                         }
                     },
-                    columnDefs: [{
-                        className: 'dtr-control',
-                        orderable: false,
-                        targets: 0
-                    }],
-                    order: [1, 'asc']
-                }
+                ],
+                visicolumnDefs: [{
+                    className: 'dtr-control',
+                    orderable: false,
+                    targets: 1
+                }],
+                order: [1, 'asc']
             });
         });
     </script>

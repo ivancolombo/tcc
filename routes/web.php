@@ -18,7 +18,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'medicos'], function() {
+Route::group(['prefix' => 'medicos', 'middleware' => 'tipo:admin'], function() {
     Route::get('/', 'MedicoController@index');
-    Route::get('/novo', 'MedicoController@create')->middleware('tipo:admin');
+    Route::get('/list', 'MedicoController@list');
+    Route::get('/novo', 'MedicoController@create');
+    Route::post('/', 'MedicoController@store');
 });

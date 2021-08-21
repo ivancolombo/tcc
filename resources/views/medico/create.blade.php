@@ -10,7 +10,8 @@
 @stop
 @section('content')
 <div class="d-flex justify-content-center">
-    <form action="" class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
+    <form action="{{ url('medicos') }}" method="POST" enctype="multipart/form-data" class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
+        @csrf
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Novo</h3>
@@ -39,8 +40,8 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Confirmar senha</label>
-                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
-                    @error('password')
+                    <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                    @error('password_confirmation')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
@@ -52,10 +53,14 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="especialidade">Especialidade</label>
-                    <input type="text" name="especialidade"
-                        class="form-control @error('especialidade') is-invalid @enderror">
-                    @error('especialidade')
+                    <label for="especialidade_id">Especialidade</label>                    
+                    <select name="especialidade_id" class="form-control @error('especialidade_id') is-invalid @enderror">
+                        <option value="">Selecione</option>
+                        @foreach ($especialidades as $especialidade)
+                            <option value="{{ $especialidade->id }}">{{ $especialidade->nome }}</option>
+                        @endforeach
+                    </select>
+                    @error('especialidade_id')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
@@ -68,15 +73,15 @@
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto</label>
-                    <div class="input-group">
+                    <div class="input-group @error('foto') is-invalid @enderror">
                         <div class="custom-file">
                             <input type="file" name="foto" class="custom-file-input @error('foto') is-invalid @enderror">
                             <label class="custom-file-label">Selecione uma foto...</label>
                         </div>
-                        @error('foto')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
                     </div>
+                    @error('foto')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
