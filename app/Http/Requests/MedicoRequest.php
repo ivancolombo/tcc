@@ -22,16 +22,23 @@ class MedicoRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
-            'nome' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'password_confirmation' => 'required',
+    {        
+        $rules = [
+            'nome' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:users,email,'.$this->request->get('user_id').',id',
             'telefone' => 'required',
             'especialidade_id' => 'required',
-            'crm' => 'required',
-            'foto' => 'required',
+            'crm' => 'required',            
         ];
+
+        if($this->request->get('_method') === 'POST' || !is_null($this->request->get('password'))) {            
+            $rules += [
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+                'foto' => 'required|file',
+            ];
+        }
+
+        return $rules;
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Especialidade;
 use App\Models\User;
 use App\Services\ServiceUser;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class MedicoController extends Controller
@@ -36,13 +37,20 @@ class MedicoController extends Controller
     {
         $requestValidated = $request->validated();
 
+        $foto = null;
+
+        if($request->hasFile('foto')) 
+        {
+            $foto = $request->file('foto')->store('fotos');
+        }
+
         $user = $serviceUser->create($requestValidated['nome'], $requestValidated['email'], $requestValidated['password'], 'medico');
 
         $user->medico()->create([
             'telefone' => $requestValidated['telefone'],
             'especialidade_id' => $requestValidated['especialidade_id'],
             'crm' => $requestValidated['crm'],
-            'foto' => 'foto',
+            'foto' => $foto,
         ]);
 
         Session::flash("success", "Médico {$user->name} cadastrado com sucesso!");
@@ -62,13 +70,20 @@ class MedicoController extends Controller
     {
         $requestValidated = $request->validated();
 
+        $foto = null;
+
+        if($request->hasFile('foto')) 
+        {
+            $foto = $request->file('foto')->store('fotos');
+        }
+
         $user = $serviceUser->update($id, $requestValidated['nome'], $requestValidated['email'], isset($requestValidated['password']) ? $requestValidated['password'] : null);
 
         $user->medico()->update([
             'telefone' => $requestValidated['telefone'],
             'especialidade_id' => $requestValidated['especialidade_id'],
             'crm' => $requestValidated['crm'],
-            'foto' => 'foto',
+            'foto' => $foto,
         ]);
 
         Session::flash("success", "Médico {$user->name} atualizado com sucesso!");

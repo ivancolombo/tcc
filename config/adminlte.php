@@ -430,6 +430,21 @@ return [
                 ],
             ],
         ],
+        'defaultFiles' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/style.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'js/script.js',
+                ],
+            ],
+        ],
     ],
 
     /*

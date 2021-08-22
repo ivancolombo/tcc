@@ -13,11 +13,32 @@
     <form action="{{ url('medicos', $user->id) }}" method="POST" enctype="multipart/form-data" class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
         @csrf
         @method('PATCH')
+        <input type="hidden" name="user_id" value="{{$user->id}}">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Editar</h3>
             </div>
             <div class="card-body">
+                <div class="profile-pic-wrapper">
+                    <div class="pic-holder">
+                        <img id="profilePic" class="pic" src="{{$user->medico->getFoto()}}">
+
+                        <label for="newProfilePhoto" class="upload-file-block">
+                            <div class="text-center">
+                                <div class="mb-2">
+                                    <i class="fa fa-camera fa-2x"></i>
+                                </div>
+                                <div class="text-uppercase">
+                                    Selecione <br /> uma foto de perfil
+                                </div>
+                            </div>
+                        </label>
+                        <input class="uploadProfileInput d-none" type="file" name="foto" id="newProfilePhoto" accept="image/*">
+                    </div>
+                    @error('foto')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror" value="{{old("nome", $user->name)}}">
@@ -71,18 +92,6 @@
                     <label for="crm">CRM</label>
                     <input type="text" name="crm" class="form-control @error('crm') is-invalid @enderror" value="{{old("crm", $user->medico->telefone)}}">
                     @error('crm')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="foto">Foto</label>
-                    <div class="input-group @error('foto') is-invalid @enderror">
-                        <div class="custom-file">
-                            <input type="file" name="foto" class="custom-file-input @error('foto') is-invalid @enderror">
-                            <label class="custom-file-label">Selecione uma foto...</label>
-                        </div>
-                    </div>
-                    @error('foto')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
