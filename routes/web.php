@@ -23,4 +23,6 @@ Route::group(['prefix' => 'medicos', 'middleware' => 'tipo:admin'], function() {
     Route::get('/list', 'MedicoController@list');
     Route::get('/novo', 'MedicoController@create');
     Route::post('/', 'MedicoController@store');
+    Route::get('{id}/editar', 'MedicoController@edit');
+    Route::patch('{id}', 'MedicoController@update');
 });

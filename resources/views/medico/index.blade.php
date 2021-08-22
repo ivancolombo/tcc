@@ -117,7 +117,7 @@
                     orderable: false,
                     targets: 1
                 }],
-                order: [1, 'asc']
+                order: [0, 'asc']
             });
         });
     </script>
