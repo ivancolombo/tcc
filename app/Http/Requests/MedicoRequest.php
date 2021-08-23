@@ -41,4 +41,13 @@ class MedicoRequest extends FormRequest
 
         return $rules;
     }
+
+    public function validationData()
+    {
+        $data = $this->all();
+
+        $data['telefone'] = preg_replace('/[^0-9]/', '', $data['telefone']);
+
+        return $data;
+    }
 }

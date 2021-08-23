@@ -39,8 +39,7 @@ class MedicoController extends Controller
 
         $foto = null;
 
-        if($request->hasFile('foto')) 
-        {
+        if ($request->hasFile('foto')) {
             $foto = $request->file('foto')->store('fotos');
         }
 
@@ -72,19 +71,28 @@ class MedicoController extends Controller
 
         $foto = null;
 
-        if($request->hasFile('foto')) 
-        {
+        if ($request->hasFile('foto')) {
             $foto = $request->file('foto')->store('fotos');
         }
 
         $user = $serviceUser->update($id, $requestValidated['nome'], $requestValidated['email'], isset($requestValidated['password']) ? $requestValidated['password'] : null);
 
-        $user->medico()->update([
-            'telefone' => $requestValidated['telefone'],
-            'especialidade_id' => $requestValidated['especialidade_id'],
-            'crm' => $requestValidated['crm'],
-            'foto' => $foto,
-        ]);
+        if (is_null($foto)) {
+            $medicoDados = [
+                'telefone' => $requestValidated['telefone'],
+                'especialidade_id' => $requestValidated['especialidade_id'],
+                'crm' => $requestValidated['crm'],
+            ];
+        } else {
+            $medicoDados = [
+                'telefone' => $requestValidated['telefone'],
+                'especialidade_id' => $requestValidated['especialidade_id'],
+                'crm' => $requestValidated['crm'],
+                'foto' => $foto
+            ];
+        }
+
+        $user->medico()->update($medicoDados);
 
         Session::flash("success", "Médico {$user->name} atualizado com sucesso!");
 

@@ -21,7 +21,8 @@
                 <div class="card-body">
                     <div class="profile-pic-wrapper">
                         <div class="pic-holder">
-                            <img id="profilePic" class="pic" src="https://image.flaticon.com/icons/png/512/1695/1695213.png">
+                            <img id="profilePic" class="pic"
+                                src="https://image.flaticon.com/icons/png/512/1695/1695213.png">
 
                             <label for="newProfilePhoto" class="upload-file-block">
                                 <div class="text-center">
@@ -33,7 +34,8 @@
                                     </div>
                                 </div>
                             </label>
-                            <input class="uploadProfileInput d-none" type="file" name="foto" id="newProfilePhoto" accept="image/*">
+                            <input class="uploadProfileInput d-none" type="file" name="foto" id="newProfilePhoto"
+                                accept="image/*">
                         </div>
                         @error('foto')
                             <small class="text-danger">{{ $message }}</small>
@@ -72,7 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="text" name="telefone" class="form-control @error('telefone') is-invalid @enderror"
+                        <input type="text" name="telefone" class="celular form-control @error('telefone') is-invalid @enderror"
                             value="{{ old('telefone') }}">
                         @error('telefone')
                             <small class="text-danger">{{ $message }}</small>
@@ -96,7 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label for="crm">CRM</label>
-                        <input type="text" name="crm" class="form-control @error('crm') is-invalid @enderror"
+                        <input type="text" name="crm" class="crm form-control @error('crm') is-invalid @enderror"
                             value="{{ old('crm') }}">
                         @error('crm')
                             <small class="text-danger">{{ $message }}</small>

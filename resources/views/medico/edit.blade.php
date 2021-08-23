@@ -69,7 +69,7 @@
                 </div>
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" class="form-control @error('telefone') is-invalid @enderror" value="{{old("telefone", $user->medico->telefone)}}">
+                    <input type="text" name="telefone" class="celular form-control @error('telefone') is-invalid @enderror" value="{{old("telefone", $user->medico->telefone)}}">
                     @error('telefone')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -90,7 +90,7 @@
                 </div>
                 <div class="form-group">
                     <label for="crm">CRM</label>
-                    <input type="text" name="crm" class="form-control @error('crm') is-invalid @enderror" value="{{old("crm", $user->medico->telefone)}}">
+                    <input type="text" name="crm" class="crm form-control @error('crm') is-invalid @enderror" value="{{old("crm", $user->medico->crm)}}">
                     @error('crm')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

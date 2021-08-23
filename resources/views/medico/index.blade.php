@@ -100,8 +100,7 @@
                     {
                         data: null,                        
                         orderable: false,
-                        render: function(data, type, row, meta) {
-                            console.log(row);
+                        render: function(data, type, row, meta) {                            
                             let campo = `<div>
                                             <a class="btn btn-primary btn-sm" href="medicos/${row.id}/editar">
                                                 <i class="fas fa-pencil-alt"></i>
