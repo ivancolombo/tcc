@@ -246,13 +246,20 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
-        // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
+        [
+            'text'   => 'Médicos',
+            'url'    => 'medicos',
+            'icon'   => 'fas fa-fw fa-user-md',  
+            'active' => ['/medicos/*'],       
+        ],
+        [
+            'text'   => 'Pacientes',
+            'url'    => 'pacientes',
+            'icon'   => 'fas fa-fw fa-user-injured',  
+            'active' => ['/pacientes/*'],          
+            // 'label'       => 4,
+            // 'label_color' => 'success',
+        ],
         // ['header' => 'account_settings'],
         // [
         //     'text' => 'profile',
