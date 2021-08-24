@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Medico extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'telefone', 'especialidade_id', 'crm', 'foto',
     ];

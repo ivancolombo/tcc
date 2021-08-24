@@ -25,7 +25,7 @@ class MedicoRequest extends FormRequest
     {        
         $rules = [
             'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users,email,'.$this->request->get('user_id').',id',
+            'email' => 'required|string|email',
             'telefone' => 'required',
             'especialidade_id' => 'required',
             'crm' => 'required',            
