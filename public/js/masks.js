@@ -8,4 +8,5 @@ var maskCelular = function (val) {
     };
 
 $('.celular').mask(maskCelular, celular);
-$('.crm').mask('00000 SS');
+$('.crm').mask('00000-SS');
+$('.cpf').mask('000.000.000-00');

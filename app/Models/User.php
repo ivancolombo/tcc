@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\models\Medico;
+use App\models\Paciente;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function medico()
     {
         return $this->hasOne(Medico::class);
+    }
+
+    public function paciente()
+    {
+        return $this->hasOne(Paciente::class);
     }
 }

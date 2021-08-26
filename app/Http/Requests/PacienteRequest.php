@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MedicoRequest extends FormRequest
+class PacienteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,9 @@ class MedicoRequest extends FormRequest
         $rules = [
             'nome' => 'required|string|max:255',
             'email' => 'required|string|max:255|email',
-            'telefone' => 'required',
-            'especialidade_id' => 'required',
-            'crm' => 'required',            
+            'telefone' => 'required',        
+            'cpf' => 'required',        
+            'data_nascimento' => 'required',        
         ];
 
         if($this->request->get('_method') === 'POST' || !is_null($this->request->get('password'))) {            
@@ -47,6 +47,7 @@ class MedicoRequest extends FormRequest
         $data = $this->all();
 
         $data['telefone'] = preg_replace('/[^0-9]/', '', $data['telefone']);
+        $data['cpf'] = preg_replace('/[^0-9]/', '', $data['cpf']);
 
         return $data;
     }

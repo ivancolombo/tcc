@@ -3,7 +3,7 @@
     <div class="col-sm-6">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Médicos</li>
+            <li class="breadcrumb-item active">Pacientes</li>
         </ol>
     </div>
 @stop
@@ -18,9 +18,9 @@
     @endif
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Médicos</h3>
+            <h3 class="card-title">Pacientes</h3>
             <div class="card-tools">
-                <a href="{{ url('/medicos/novo') }}" class="btn btn-primary btn-sm">Novo</a>
+                <a href="{{ url('/pacientes/novo') }}" class="btn btn-primary btn-sm">Novo</a>
             </div>
         </div>
         <div class="card-body">
@@ -29,8 +29,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Especialidade</th>
-                        <th>CRM</th>
+                        <th>Telefone</th>
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
@@ -38,8 +37,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
-                        <th>Especialidade</th>
-                        <th>CRM</th>
+                        <th>Telefone</th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -83,7 +81,7 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('medicos/list') }}",
+                ajax: "{{ url('pacientes/list') }}",
                 columns: [                    
                     {
                         data: 'name'
@@ -92,17 +90,15 @@
                         data: 'email'
                     },
                     {
-                        data: 'medico.especialidade.nome'
-                    },
-                    {
-                        data: 'medico.crm'
+                        data: 'paciente.telefone'
                     },
                     {
                         data: null,                        
                         orderable: false,
-                        render: function(data, type, row, meta) {                            
+                        render: function(data, type, row, meta) {   
+                            console.log(row)                         ;
                             let campo = `<div class="d-flex justify-content-center">
-                                            <a class="btn btn-primary btn-sm" href="medicos/${row.id}/editar">
+                                            <a class="btn btn-primary btn-sm" href="pacientes/${row.id}/editar">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>`;

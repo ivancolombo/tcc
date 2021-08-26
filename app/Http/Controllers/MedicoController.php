@@ -6,6 +6,7 @@ use App\Http\Requests\MedicoRequest;
 use App\Models\Especialidade;
 use App\Models\User;
 use App\Services\ServiceUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -43,6 +44,7 @@ class MedicoController extends Controller
             $foto = $request->file('foto')->store('fotos');
         }
 
+        DB::beginTransaction();
         $user = $serviceUser->create($requestValidated['nome'], $requestValidated['email'], $requestValidated['password'], 'medico');
 
         $user->medico()->create([
@@ -51,7 +53,8 @@ class MedicoController extends Controller
             'crm' => $requestValidated['crm'],
             'foto' => $foto,
         ]);
-
+        DB::commit();
+        
         Session::flash("success", "Médico {$user->name} cadastrado com sucesso!");
 
         return redirect('/medicos');
@@ -75,6 +78,7 @@ class MedicoController extends Controller
             $foto = $request->file('foto')->store('fotos');
         }
 
+        DB::beginTransaction();
         $user = $serviceUser->update($id, $requestValidated['nome'], $requestValidated['email'], isset($requestValidated['password']) ? $requestValidated['password'] : null);
 
         if (is_null($foto)) {
@@ -93,6 +97,7 @@ class MedicoController extends Controller
         }
 
         $user->medico()->update($medicoDados);
+        DB::commit();
 
         Session::flash("success", "Médico {$user->name} atualizado com sucesso!");
 
