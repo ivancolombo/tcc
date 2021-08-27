@@ -8,14 +8,14 @@
     </div>
 @stop
 @section('content')
-    @if (Session::has('success'))
+    {{-- @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center col-md-12" role="alert">
             {{ Session::get('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    @endif
+    @endif --}}
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Médicos</h3>
@@ -86,7 +86,8 @@
                 ajax: "{{ url('medicos/list') }}",
                 columns: [                    
                     {
-                        data: 'name'
+                        data: 'name',
+                        responsivePriority: 1,
                     },
                     {
                         data: 'email'
@@ -100,9 +101,10 @@
                     {
                         data: null,                        
                         orderable: false,
+                        responsivePriority: 2,
                         render: function(data, type, row, meta) {                            
                             let campo = `<div class="d-flex justify-content-center">
-                                            <a class="btn btn-primary btn-sm" href="medicos/${row.id}/editar">
+                                            <a class="btn btn-primary btn-sm" href="medicos/${row.id}/editar" data-toggle="tooltip" data-placement="left" title="Editar">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>`;
@@ -116,8 +118,33 @@
                     orderable: false,
                     targets: 1
                 }],
-                order: [0, 'asc']
+                order: [0, 'asc'],
+                initComplete: function(settings, json) {
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
             });
+
+            @if (Session::has('success'))
+                Command: toastr["success"]("{{ Session::get('success') }}")
+
+                toastr.options = {
+                    closeButton: false,
+                    debug: false,
+                    newestOnTop: false,
+                    progressBar: false,
+                    positionClass: "toast-top-right",
+                    preventDuplicates: false,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    timeOut: "5000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut"
+                }
+            @endif
         });
     </script>
 @stop

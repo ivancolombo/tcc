@@ -25,17 +25,26 @@ class PacienteRequest extends FormRequest
     {        
         $rules = [
             'nome' => 'required|string|max:255',
-            'email' => 'required|string|max:255|email',
             'telefone' => 'required',        
             'cpf' => 'required',        
-            'data_nascimento' => 'required',        
+            'data_nascimento' => 'required|date',        
         ];
 
-        if($this->request->get('_method') === 'POST' || !is_null($this->request->get('password'))) {            
+        if($this->request->get('_method') === 'POST') {            
             $rules += [
                 'password' => 'required|string|min:8|confirmed',
                 'password_confirmation' => 'required',
                 'foto' => 'required|file',
+                'email' => 'required|string|max:255|email|unique:users',
+            ];
+        } elseif(!is_null($this->request->get('password'))) {
+            $rules += [
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+            ];        
+        } else {
+            $rules += [
+                'email' => 'required|string|max:255|email|unique:users,email,'.$this->request->get('user_id'),
             ];
         }
 
