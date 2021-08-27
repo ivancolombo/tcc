@@ -39,6 +39,10 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="status" name="status" {{ old("status", $user->status)? 'checked' : '' }}>
+                    <label class="form-check-label" for="status">Ativo</label>
+                </div>
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror" value="{{old("nome", $user->name)}}">

@@ -45,7 +45,11 @@ class MedicoController extends Controller
         }
 
         DB::beginTransaction();
-        $user = $serviceUser->create($requestValidated['nome'], $requestValidated['email'], $requestValidated['password'], 'medico');
+        $user = $serviceUser->create($requestValidated['nome'], 
+                                    $requestValidated['email'], 
+                                    $requestValidated['password'], 
+                                    'medico'
+                                );
 
         $user->medico()->create([
             'telefone' => $requestValidated['telefone'],
@@ -79,7 +83,12 @@ class MedicoController extends Controller
         }
 
         DB::beginTransaction();
-        $user = $serviceUser->update($id, $requestValidated['nome'], $requestValidated['email'], isset($requestValidated['password']) ? $requestValidated['password'] : null);
+        $user = $serviceUser->update($id, 
+                                    $requestValidated['nome'], 
+                                    $requestValidated['email'], 
+                                    isset($requestValidated['status']), 
+                                    isset($requestValidated['password']) ? $requestValidated['password'] : null
+                                );
 
         if (is_null($foto)) {
             $medicoDados = [

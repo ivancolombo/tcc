@@ -42,7 +42,11 @@ class PacienteController extends Controller
         }
 
         DB::beginTransaction();
-        $user = $serviceUser->create($requestValidated['nome'], $requestValidated['email'], $requestValidated['password'], 'paciente');
+        $user = $serviceUser->create($requestValidated['nome'], 
+                                     $requestValidated['email'], 
+                                     $requestValidated['password'], 
+                                     'paciente'
+                                    );
 
         $user->paciente()->create([
             'telefone' => $requestValidated['telefone'],
@@ -75,7 +79,12 @@ class PacienteController extends Controller
         }
 
         DB::beginTransaction();
-        $user = $serviceUser->update($id, $requestValidated['nome'], $requestValidated['email'], isset($requestValidated['password']) ? $requestValidated['password'] : null);
+        $user = $serviceUser->update($id, 
+                                    $requestValidated['nome'], 
+                                    $requestValidated['email'], 
+                                    isset($requestValidated['status']), 
+                                    isset($requestValidated['password']) ? $requestValidated['password'] : null
+                                );
 
         if (is_null($foto)) {
             $pacienteDados = [

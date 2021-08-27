@@ -27,7 +27,8 @@ class PacienteRequest extends FormRequest
             'nome' => 'required|string|max:255',
             'telefone' => 'required',        
             'cpf' => 'required',        
-            'data_nascimento' => 'required|date',        
+            'data_nascimento' => 'required|date',  
+            'status' => 'nullable'      
         ];
 
         if($this->request->get('_method') === 'POST') {            
