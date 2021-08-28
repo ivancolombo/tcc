@@ -247,6 +247,12 @@ return [
         //     'can'  => 'manage-blog',
         // ],
         [
+            'text'   => 'Administradores',
+            'url'    => 'administradores',
+            'icon'   => 'fas fa-fw fa-user-shield',  
+            'active' => ['/administradores/*'], 
+        ],
+        [
             'text'   => 'Especialidades',
             'url'    => 'especialidades',
             'icon'   => 'fas fa-fw fa-book-medical',  

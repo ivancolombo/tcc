@@ -44,3 +44,12 @@ Route::group(['prefix' => 'especialidades', 'middleware' => 'tipo:admin'], funct
     Route::get('{id}/editar', 'EspecialidadeController@edit');
     Route::patch('{id}', 'EspecialidadeController@update');
 });
+
+Route::group(['prefix' => 'administradores', 'middleware' => 'tipo:admin'], function() {
+    Route::get('/', 'AdministradorController@index');
+    Route::get('/list', 'AdministradorController@list');
+    Route::get('/novo', 'AdministradorController@create');
+    Route::post('/', 'AdministradorController@store');
+    Route::get('{id}/editar', 'AdministradorController@edit');
+    Route::patch('{id}', 'AdministradorController@update');
+});
