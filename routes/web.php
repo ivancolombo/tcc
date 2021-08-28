@@ -35,3 +35,12 @@ Route::group(['prefix' => 'pacientes', 'middleware' => 'tipo:admin'], function()
     Route::get('{id}/editar', 'PacienteController@edit');
     Route::patch('{id}', 'PacienteController@update');
 });
+
+Route::group(['prefix' => 'especialidades', 'middleware' => 'tipo:admin'], function() {
+    Route::get('/', 'EspecialidadeController@index');
+    Route::get('/list', 'EspecialidadeController@list');
+    Route::get('/novo', 'EspecialidadeController@create');
+    Route::post('/', 'EspecialidadeController@store');
+    Route::get('{id}/editar', 'EspecialidadeController@edit');
+    Route::patch('{id}', 'EspecialidadeController@update');
+});
