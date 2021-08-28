@@ -15,9 +15,11 @@ class CreateMedicosTable extends Migration
     {
         Schema::create('medicos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('telefone', 11);
-            $table->foreignId('especialidade_id');
+            $table->integer('especialidade_id')->unsigned();
+            $table->foreign('especialidade_id')->references('id')->on('especialidades');            
             $table->string('crm', 255);
             $table->string('foto', 255);
         });

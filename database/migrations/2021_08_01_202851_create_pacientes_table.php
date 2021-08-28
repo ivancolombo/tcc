@@ -15,7 +15,8 @@ class CreatePacientesTable extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->date('data_nascimento');
             $table->string('telefone', 11);
             $table->string('cpf', 11);
