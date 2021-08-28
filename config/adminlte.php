@@ -247,6 +247,12 @@ return [
         //     'can'  => 'manage-blog',
         // ],
         [
+            'text'   => 'Especialidades',
+            'url'    => 'especialidades',
+            'icon'   => 'fas fa-fw fa-book-medical',  
+            'active' => ['/especialidades/*'], 
+        ],
+        [
             'text'   => 'Médicos',
             'url'    => 'medicos',
             'icon'   => 'fas fa-fw fa-user-md',  
