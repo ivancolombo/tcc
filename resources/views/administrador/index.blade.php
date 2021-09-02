@@ -12,7 +12,7 @@
         <div class="card-header">
             <h3 class="card-title">Administradores</h3>
             <div class="card-tools">
-                <a href="{{ url('/administradores/novo') }}" class="btn btn-primary btn-sm">Novo</a>
+                <a href="{{ url('gerenciar/administradores/novo') }}" class="btn btn-primary btn-sm">Novo</a>
             </div>
         </div>
         <div class="card-body">
@@ -71,7 +71,7 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('administradores/list') }}",
+                ajax: "{{ url('gerenciar/administradores/list') }}",
                 columns: [{
                         data: 'name',
                         responsivePriority: 2,

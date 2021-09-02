@@ -61,7 +61,7 @@ class MedicoController extends Controller
         
         Session::flash("success", "Médico {$user->name} cadastrado com sucesso!");
 
-        return redirect('/medicos');
+        return redirect('gerenciar/medicos');
     }
 
     public function edit($id)
@@ -110,6 +110,6 @@ class MedicoController extends Controller
 
         Session::flash("success", "Médico {$user->name} atualizado com sucesso!");
 
-        return redirect('/medicos');
+        return redirect('gerenciar/medicos');
     }
 }

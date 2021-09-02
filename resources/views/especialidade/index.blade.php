@@ -2,7 +2,7 @@
 @section('content_header')
     <div class="col-sm-6">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active">Especialidades</li>
         </ol>
     </div>
@@ -12,7 +12,7 @@
         <div class="card-header">
             <h3 class="card-title">Especialidades</h3>
             <div class="card-tools">
-                <a href="{{ url('/especialidades/novo') }}" class="btn btn-primary btn-sm">Novo</a>
+                <a href="{{ url('gerenciar/especialidades/novo') }}" class="btn btn-primary btn-sm">Novo</a>
             </div>
         </div>
         <div class="card-body">
@@ -69,7 +69,7 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('especialidades/list') }}",
+                ajax: "{{ url('gerenciar/especialidades/list') }}",
                 columns: [                    
                     {
                         data: 'nome',

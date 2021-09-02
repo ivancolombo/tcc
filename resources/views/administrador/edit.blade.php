@@ -2,15 +2,15 @@
 @section('content_header')
     <div class="col-sm-6">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="/administradores">Administradores</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/gerenciar/administradores">Administradores</a></li>
             <li class="breadcrumb-item active">Editar</li>
         </ol>
     </div>
 @stop
 @section('content')
 <div class="d-flex justify-content-center">
-    <form action="{{ url('administradores', $user->id) }}" method="POST" enctype="multipart/form-data" class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
+    <form action="{{ url('gerenciar/administradores', $user->id) }}" method="POST" enctype="multipart/form-data" class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
         @csrf
         @method('PATCH')
         <input type="hidden" name="user_id" value="{{$user->id}}">

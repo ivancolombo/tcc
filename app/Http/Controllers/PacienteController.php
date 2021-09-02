@@ -58,7 +58,7 @@ class PacienteController extends Controller
 
         Session::flash("success", "Paciente {$user->name} cadastrado com sucesso!");
 
-        return redirect('/pacientes');
+        return redirect('gerenciar/pacientes');
     }
 
     public function edit($id)
@@ -106,6 +106,6 @@ class PacienteController extends Controller
 
         Session::flash("success", "Paciente {$user->name} atualizado com sucesso!");
 
-        return redirect('/pacientes');
+        return redirect('gerenciar/pacientes');
     }
 }

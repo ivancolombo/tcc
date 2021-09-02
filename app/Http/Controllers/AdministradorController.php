@@ -42,7 +42,7 @@ class AdministradorController extends Controller
 
         Session::flash("success", "Administrador {$user->name} cadastrado com sucesso!");
 
-        return redirect('/administradores');
+        return redirect('gerenciar/administradores');
     }
 
     public function edit($id)
@@ -67,6 +67,6 @@ class AdministradorController extends Controller
 
         Session::flash("success", "Administrador {$user->name} atualizado com sucesso!");
 
-        return redirect('/administradores');
+        return redirect('gerenciar/administradores');
     }
 }

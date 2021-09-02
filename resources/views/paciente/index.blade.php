@@ -2,25 +2,17 @@
 @section('content_header')
     <div class="col-sm-6">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active">Pacientes</li>
         </ol>
     </div>
 @stop
 @section('content')
-    {{-- @if (Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show text-center col-md-12" role="alert">
-            {{ Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif --}}
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Pacientes</h3>
             <div class="card-tools">
-                <a href="{{ url('/pacientes/novo') }}" class="btn btn-primary btn-sm">Novo</a>
+                <a href="{{ url('gerenciar/pacientes/novo') }}" class="btn btn-primary btn-sm">Novo</a>
             </div>
         </div>
         <div class="card-body">
@@ -79,7 +71,7 @@
                 },
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('pacientes/list') }}",
+                ajax: "{{ url('gerenciar/pacientes/list') }}",
                 columns: [{
                         data: 'name',
                         responsivePriority: 2,
@@ -93,7 +85,7 @@
                         responsivePriority: 2,
                         render: function(data, type, row, meta) {
                             let campo = `<div class="d-flex justify-content-center">
-                                            <a class="btn btn-primary btn-sm" href="pacientes/${row.id}/editar" data-toggle="tooltip" data-placement="left" title="Editar">
+                                            <a class="btn btn-primary btn-sm" href="/gerenciar/pacientes/${row.id}/editar" data-toggle="tooltip" data-placement="left" title="Editar">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>`;

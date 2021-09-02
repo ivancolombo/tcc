@@ -41,7 +41,7 @@ class EspecialidadeController extends Controller
         
         Session::flash("success", "Especialidade {$especialidade->nome} cadastrada com sucesso!");
 
-        return redirect('/especialidades');
+        return redirect('gerenciar/especialidades');
     }
 
     public function edit($id)
@@ -63,6 +63,6 @@ class EspecialidadeController extends Controller
 
         Session::flash("success", "Especialidade {$especialidade->nome} atualizada com sucesso!");
 
-        return redirect('/especialidades');
+        return redirect('gerenciar/especialidades');
     }
 }
