@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Services\ServiceUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class MedicoController extends Controller
@@ -55,6 +54,7 @@ class MedicoController extends Controller
             'telefone' => $requestValidated['telefone'],
             'especialidade_id' => $requestValidated['especialidade_id'],
             'crm' => $requestValidated['crm'],
+            'rqe' => $requestValidated['rqe'],
             'foto' => $foto,
         ]);
         DB::commit();
@@ -94,6 +94,7 @@ class MedicoController extends Controller
             $medicoDados = [
                 'telefone' => $requestValidated['telefone'],
                 'especialidade_id' => $requestValidated['especialidade_id'],
+                'rqe' => $requestValidated['rqe'],
                 'crm' => $requestValidated['crm'],
             ];
         } else {
@@ -101,6 +102,7 @@ class MedicoController extends Controller
                 'telefone' => $requestValidated['telefone'],
                 'especialidade_id' => $requestValidated['especialidade_id'],
                 'crm' => $requestValidated['crm'],
+                'rqe' => $requestValidated['rqe'],
                 'foto' => $foto
             ];
         }

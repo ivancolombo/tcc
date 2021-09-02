@@ -28,7 +28,8 @@ class MedicoRequest extends FormRequest
             'telefone' => 'required',
             'especialidade_id' => 'required',
             'crm' => 'required',      
-            'status' => 'nullable'       
+            'status' => 'nullable',       
+            'rqe' => 'nullable|max:10'       
         ];
 
         if($this->request->get('_method') === 'POST' ) {            

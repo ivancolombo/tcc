@@ -99,6 +99,14 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="rqe">RQE</label>
+                    <input type="number" name="rqe" class="rqe form-control @error('rqe') is-invalid @enderror"
+                        value="{{ old('rqe', $user->medico->rqe) }}">
+                    @error('rqe')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
                 <button class="btn btn-primary">Salvar</button>
