@@ -28,7 +28,12 @@ class PacienteRequest extends FormRequest
             'telefone' => 'required',        
             'cpf' => 'required',        
             'data_nascimento' => 'required|date',  
-            'status' => 'nullable'      
+            'status' => 'nullable',
+            'cep' => 'required|max:8',
+            'estado' => 'required|max:2',
+            'cidade' => 'required|max:255',
+            'bairro' => 'required|max:255',
+            'rua' => 'required|max:255',
         ];
 
         if($this->request->get('_method') === 'POST') {            
@@ -42,6 +47,7 @@ class PacienteRequest extends FormRequest
             $rules += [
                 'password' => 'required|string|min:8|confirmed',
                 'password_confirmation' => 'required',
+                'email' => 'required|string|max:255|email|unique:users,email,'.$this->request->get('user_id'),
             ];        
         } else {
             $rules += [
@@ -58,6 +64,7 @@ class PacienteRequest extends FormRequest
 
         $data['telefone'] = preg_replace('/[^0-9]/', '', $data['telefone']);
         $data['cpf'] = preg_replace('/[^0-9]/', '', $data['cpf']);
+        $data['cep'] = preg_replace('/[^0-9]/', '', $data['cep']);
 
         return $data;
     }

@@ -34,6 +34,7 @@ class PacienteController extends Controller
     public function store(PacienteRequest $request, ServiceUser $serviceUser)
     {
         $requestValidated = $request->validated();
+        // dd($requestValidated);
 
         $foto = null;
 
@@ -54,6 +55,15 @@ class PacienteController extends Controller
             'cpf' => $requestValidated['cpf'],
             'foto' => $foto,
         ]);
+
+        $user->paciente->endereco()->create([
+            'cep' => $requestValidated['cep'],
+            'estado' => $requestValidated['estado'],
+            'cidade' => $requestValidated['cidade'],
+            'bairro' => $requestValidated['bairro'],
+            'rua' => $requestValidated['rua'],
+        ]);
+
         DB::commit();
 
         Session::flash("success", "Paciente {$user->name} cadastrado com sucesso!");
@@ -63,7 +73,7 @@ class PacienteController extends Controller
 
     public function edit($id)
     {
-        $user = User::with('paciente')->find($id);
+        $user = User::with('paciente', 'paciente.endereco')->find($id);
 
         return view('paciente.edit', compact('user'));
     }
@@ -102,6 +112,16 @@ class PacienteController extends Controller
         }
 
         $user->paciente()->update($pacienteDados);
+
+        
+        $user->paciente->endereco()->update([
+            'cep' => $requestValidated['cep'],
+            'estado' => $requestValidated['estado'],
+            'cidade' => $requestValidated['cidade'],
+            'bairro' => $requestValidated['bairro'],
+            'rua' => $requestValidated['rua'],
+        ]);
+
         DB::commit();
 
         Session::flash("success", "Paciente {$user->name} atualizado com sucesso!");

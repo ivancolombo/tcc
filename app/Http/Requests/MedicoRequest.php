@@ -43,6 +43,7 @@ class MedicoRequest extends FormRequest
             $rules += [
                 'password' => 'required|string|min:8|confirmed',
                 'password_confirmation' => 'required',
+                'email' => 'required|string|max:255|email|unique:users,email,'.$this->request->get('user_id'),
             ];
         } else {
             $rules += [

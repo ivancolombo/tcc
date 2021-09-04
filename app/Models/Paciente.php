@@ -17,6 +17,11 @@ class Paciente extends Model
         return $this->hasOne(User::class);
     }
 
+    public function endereco()
+    {
+        return $this->hasOne(EnderecoPaciente::class);
+    }
+
     public function getFoto() {        
         return Storage::url($this->foto);
     }

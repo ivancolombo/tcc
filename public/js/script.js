@@ -61,3 +61,58 @@ $(document).on("change", ".uploadProfileInput", function () {
     }
 });
 // Fim Script campo foto do cadastro de medico e paciente
+
+// Script para buscar endereço com base no cep
+async function getEndereco(cep) {
+    let response;
+    try {
+        response = await $.ajax({
+            method: "get",
+            url: 'https://viacep.com.br/ws/' + cep + '/json/'
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+$('#cep').change(async () => {
+    let cep = $("#cep").val().replace(/[^\d]+/g, '');
+
+    if (cep.length === 8) {
+        let endereco = await getEndereco(cep);
+
+        if (endereco.erro === undefined) {
+            $('#cidade').val(endereco.localidade);
+            $('#estado').val(endereco.uf);
+            $('#bairro').val(endereco.bairro);
+            $('#rua').val(endereco.logradouro);
+
+            $('#cidade').attr('readonly', false);
+            $('#estado').attr('readonly', false);
+            $('#bairro').attr('readonly', false);
+            $('#rua').attr('readonly', false);
+        } else {
+            limparCamposEndereco();
+        }
+    } else {
+        limparCamposEndereco();
+    }
+
+    function limparCamposEndereco() {
+        alert('CEP inválido!');
+
+        $('#cep').focus();
+        $('#cep').val('');
+        $('#cidade').val('');
+        $('#estado').val('');
+        $('#bairro').val('');
+        $('#rua').val('');
+
+        $('#cidade').attr('readonly', true);
+        $('#estado').attr('readonly', true);
+        $('#bairro').attr('readonly', true);
+        $('#rua').attr('readonly', true);
+    }
+});
+// Fim Script para buscar endereço com base no cep

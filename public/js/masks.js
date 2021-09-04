@@ -10,3 +10,4 @@ var maskCelular = function (val) {
 $('.celular').mask(maskCelular, celular);
 $('.crm').mask('00000-SS');
 $('.cpf').mask('000.000.000-00');
+$('.cep').mask('00000-000', {clearIfNotMatch: true});

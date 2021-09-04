@@ -94,6 +94,52 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
+                <hr>
+                    <h5>Endereço</h5>
+                    <div class="row">
+                        <div class="form-group col-xl-6 col-lg-12">
+                            <label for="cep">CEP</label>
+                            <input type="text" name="cep" id="cep" class="cep form-control @error('cep') is-invalid @enderror"
+                                value="{{ old('cep', $user->paciente->endereco->cep) }}">
+                            @error('cep')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-12">
+                            <label for="estado">Estado</label>
+                            <input type="text" name="estado" class="form-control @error('estado') is-invalid @enderror"
+                                value="{{ old('estado', $user->paciente->endereco->estado) }}" id="estado" readonly>
+                            @error('estado')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xl-6 col-lg-12">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" name="cidade" class="form-control @error('cidade') is-invalid @enderror"
+                                value="{{ old('cidade', $user->paciente->endereco->cidade) }}" id="cidade" readonly>
+                            @error('cidade')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-12">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" name="bairro" class="form-control @error('bairro') is-invalid @enderror"
+                                value="{{ old('bairro', $user->paciente->endereco->bairro) }}" id="bairro" readonly>
+                            @error('bairro')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rua">Rua</label>
+                        <input type="text" name="rua" class="form-control @error('rua') is-invalid @enderror"
+                            value="{{ old('rua', $user->paciente->endereco->rua) }}" id="rua" readonly>
+                        @error('rua')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
                 <button class="btn btn-primary">Salvar</button>
