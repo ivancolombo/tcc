@@ -11,6 +11,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdministradorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function index()
     {
         return view('administrador.index');

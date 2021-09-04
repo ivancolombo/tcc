@@ -10,6 +10,11 @@ use Yajra\DataTables\Facades\DataTables;
 
 class EspecialidadeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+    
     public function index()
     {
         return view('especialidade.index');

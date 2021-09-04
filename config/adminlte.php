@@ -251,24 +251,28 @@ return [
             'url'    => 'gerenciar/administradores',
             'icon'   => 'fas fa-fw fa-user-shield',  
             'active' => ['gerenciar/administradores/*'], 
+            'can'    => 'admin'
         ],
         [
             'text'   => 'Especialidades',
             'url'    => 'gerenciar/especialidades',
             'icon'   => 'fas fa-fw fa-book-medical',  
             'active' => ['gerenciar/especialidades/*'], 
+            'can'    => 'admin'
         ],
         [
             'text'   => 'Médicos',
             'url'    => 'gerenciar/medicos',
             'icon'   => 'fas fa-fw fa-user-md',  
-            'active' => ['gerenciar/medicos/*'],       
+            'active' => ['gerenciar/medicos/*'],   
+            'can'    => 'admin'    
         ],
         [
             'text'   => 'Pacientes',
             'url'    => 'gerenciar/pacientes',
             'icon'   => 'fas fa-fw fa-user-injured',  
-            'active' => ['gerenciar/pacientes/*'],          
+            'active' => ['gerenciar/pacientes/*'],  
+            'can'    => 'admin'        
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
