@@ -119,4 +119,13 @@ class MedicoController extends Controller
 
         return redirect('gerenciar/medicos');
     }
+
+    public function listForPatients()
+    {
+        $users = User::with('medico', 'medico.especialidade')
+            ->where('tipo', 'medico')
+            ->paginate(9);
+
+        return view('medico.list_for_patients', compact('users'));
+    }
 }

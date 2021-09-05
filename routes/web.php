@@ -56,3 +56,5 @@ Route::group(['prefix' => 'gerenciar'], function () {
         Route::patch('{id}', 'AdministradorController@update');
     });
 });
+
+Route::get('/medicos', 'MedicoController@listForPatients');

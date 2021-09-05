@@ -247,6 +247,10 @@ return [
         //     'can'  => 'manage-blog',
         // ],
         [
+            'header' => 'Gerenciar',
+            'can'    => 'admin'
+        ],
+        [
             'text'   => 'Administradores',
             'url'    => 'gerenciar/administradores',
             'icon'   => 'fas fa-fw fa-user-shield',  
@@ -275,6 +279,17 @@ return [
             'can'    => 'admin'        
             // 'label'       => 4,
             // 'label_color' => 'success',
+        ],
+        [
+            'header' => 'Site',
+            'can'    => 'admin'
+        ],
+        [
+            'text'   => 'Médicos',
+            'url'    => 'medicos',
+            'icon'   => 'fas fa-fw fa-user-md',  
+            'active' => ['medicos/*'],   
+            'can'    => 'admin'    
         ],
         // ['header' => 'account_settings'],
         // [
