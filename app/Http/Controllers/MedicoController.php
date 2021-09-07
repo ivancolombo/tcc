@@ -6,6 +6,7 @@ use App\Http\Requests\MedicoRequest;
 use App\Models\Especialidade;
 use App\Models\User;
 use App\Services\ServiceUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
@@ -120,12 +121,14 @@ class MedicoController extends Controller
         return redirect('gerenciar/medicos');
     }
 
-    public function listForPatients()
+    public function listForPatients(Request $request, User $user)
     {
-        $users = User::with('medico', 'medico.especialidade')
-            ->where('tipo', 'medico')
-            ->paginate(9);
+        $dataSearch = $request->all();
 
-        return view('medico.list_for_patients', compact('users'));
+        $especialidades = Especialidade::all();
+
+        $users = $user->search('medico', $dataSearch);
+
+        return view('medico.list_for_patients', compact('users', 'especialidades', 'dataSearch'));
     }
 }

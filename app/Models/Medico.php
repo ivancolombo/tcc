@@ -24,7 +24,15 @@ class Medico extends Model
         return $this->hasOne(Especialidade::class, 'id', 'especialidade_id');
     }
 
-    public function getFoto() {        
+    public function getFoto() 
+    {        
         return Storage::url($this->foto);
+    }
+
+    public function getTelefone()
+    {
+        $mask = strlen($this->telefone) === 11? "(%s%s) %s%s%s%s%s-%s%s%s%s" : "(%s%s) %s%s%s%s-%s%s%s%s";
+        
+        return vsprintf($mask, str_split($this->telefone));
     }
 }

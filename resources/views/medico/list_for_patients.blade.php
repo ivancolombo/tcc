@@ -13,7 +13,31 @@
             <h3 class="card-title">Médicos</h3>
         </div>
         <div class="card-body">
-            <div class="row">
+            <form class="row d-flex align-items-end">
+                <h6 class="col-12">Buscar por:</h6>
+                <div class="form-group col-xl-3 col-lg-4 col-md-5">
+                    <label for="especialidade">Especialidade</label>
+                    <select name="especialidade" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ($especialidades as $especialidade)
+                            <option value="{{ $especialidade->id }}">{{ $especialidade->nome }}</option>                            
+                        @endforeach
+                    </select>                    
+                </div>
+                <div class="form-group col-xl-3 col-lg-4 col-md-5">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" class="form-control">
+                </div>
+                {{-- <div class="form-group col-xl-3 col-lg-4">
+                    <label for="crm">CRM</label>
+                    <input type="text" name="crm" class="form-control">
+                </div> --}}
+                <div class="form-group col-xl-3 col-lg-4 col-md-2">
+                    <button class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+            <hr>
+            <div class="row pt-1 d-flex justify-content-center">
                 @forelse ($users as $user)
                     <div class="col-12 col-sm-6 col-md-6 col-xl-4 d-flex align-items-stretch flex-column">
                         <div class="card bg-light d-flex flex-fill">
@@ -23,24 +47,8 @@
                                     <div class="col-8">
                                         <h2 class="lead"><b>{{ $user->name }}</b></h2>
                                         <p class="text-muted text-sm mb-1"><b>Especialidade: </b> {{ $user->medico->especialidade->nome }} </p>
-                                        <p class="text-muted text-sm mb-1"><b>Telefone: </b> 
-                                            @php
-                                                $mask = strlen($user->medico->telefone) === 11? "(%s%s) %s%s%s%s%s-%s%s%s%s" : "(%s%s) %s%s%s%s-%s%s%s%s";
-                                            @endphp
-                                            {{  vsprintf($mask, str_split($user->medico->telefone))  }} 
-                                        </p>
+                                        <p class="text-muted text-sm mb-1"><b>Telefone: </b> {{  $user->medico->getTelefone()  }} </p>
                                         <p class="text-muted text-sm mb-1"><b>CRM: </b> {{ $user->medico->crm }} </p>
-                                        {{-- <ul class="ml-4 mb-0 fa-ul text-muted">
-                                            <li class="small"><span class="fa-li"><i
-                                                        class="fas fa-lg fa-building"></i></span> Address: Demo Street 123,
-                                                Demo
-                                                City 04312, NJ</li>
-                                            <li class="small">
-                                                <span class="fa-li">
-                                                    <i class="fas fa-lg fa-phone"></i>
-                                                </span> Telefone: {{ $user->medico->telefone }}
-                                            </li>
-                                        </ul> --}}
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="{{ $user->medico->getFoto() }}"
@@ -58,12 +66,12 @@
                         </div>                        
                     </div>
                 @empty
-
+                    <h4>Nenhum médico encontrado!</h4>
                 @endforelse
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            {{ $users->links() }}
+            {{ $users->appends($dataSearch)->links() }}
         </div>
     </div>
 @stop

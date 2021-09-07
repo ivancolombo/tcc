@@ -48,4 +48,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Paciente::class);
     }
+
+    
+    public function search(String $tipo, Array $data)
+    {
+        return $this->with('medico', 'medico.especialidade')->where('tipo', $tipo)->where(function($query) use($data) {
+            if (isset($data['nome']) && !is_null($data['nome']))
+                $query->where('name', 'like', '%'.$data['nome'].'%');
+
+            if (isset($data['especialidade']) && !is_null($data['especialidade'])) 
+                $query->whereHas('medico.especialidade', function ($query) use($data) {
+                    if (isset($data['especialidade']) && !is_null($data['especialidade']))
+                        $query->where('especialidade_id', $data['especialidade']);
+                });
+        })->paginate(3);
+
+    }
 }
