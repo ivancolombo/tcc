@@ -14,7 +14,8 @@ class UpdateMedicosTable extends Migration
     public function up()
     {
         Schema::table('medicos', function (Blueprint $table) {
-            $table->string('rqe', 10)->nullable();
+            $table->string('rqe_1', 10)->nullable();
+            $table->string('rqe_2', 10)->nullable();
         });
     }
 

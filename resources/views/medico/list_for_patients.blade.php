@@ -15,25 +15,30 @@
         <div class="card-body">
             <form class="row d-flex align-items-end">
                 <h6 class="col-12">Buscar por:</h6>
-                <div class="form-group col-xl-3 col-lg-4 col-md-5">
+                <div class="form-group col-xl-3 col-lg-4 col-md-4">
                     <label for="especialidade">Especialidade</label>
                     <select name="especialidade" class="form-control">
-                        <option value="">Selecione</option>
+                        <option value="">Todos</option>
                         @foreach ($especialidades as $especialidade)
-                            <option value="{{ $especialidade->id }}">{{ $especialidade->nome }}</option>                            
+                            <option value="{{ $especialidade->id }}" 
+                                @php
+                                    if (isset($dataSearch['especialidade']) && $dataSearch['especialidade'] == $especialidade->id) {
+                                        echo 'selected';
+                                    }
+                                @endphp                                
+                            >
+                                {{ $especialidade->nome }}
+                            </option>                            
                         @endforeach
                     </select>                    
                 </div>
-                <div class="form-group col-xl-3 col-lg-4 col-md-5">
+                <div class="form-group col-xl-3 col-lg-4 col-md-4">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" class="form-control">
+                    <input type="text" name="nome" class="form-control" value="{{ $dataSearch['nome']?? '' }}">
                 </div>
-                {{-- <div class="form-group col-xl-3 col-lg-4">
-                    <label for="crm">CRM</label>
-                    <input type="text" name="crm" class="form-control">
-                </div> --}}
-                <div class="form-group col-xl-3 col-lg-4 col-md-2">
+                <div class="form-group col-xl-3 col-lg-4 col-md-4">
                     <button class="btn btn-primary">Buscar</button>
+                    <a href="{{ url('/medicos') }}" class="btn btn-link">Limpar filtro</a>
                 </div>
             </form>
             <hr>
@@ -47,6 +52,7 @@
                                     <div class="col-8">
                                         <h2 class="lead"><b>{{ $user->name }}</b></h2>
                                         <p class="text-muted text-sm mb-1"><b>Especialidade: </b> {{ $user->medico->especialidade->nome }} </p>
+                                        <p class="text-muted text-sm mb-1"><b>E-mail: </b> {{  $user->email }} </p>
                                         <p class="text-muted text-sm mb-1"><b>Telefone: </b> {{  $user->medico->getTelefone()  }} </p>
                                         <p class="text-muted text-sm mb-1"><b>CRM: </b> {{ $user->medico->crm }} </p>
                                     </div>

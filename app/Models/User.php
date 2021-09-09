@@ -7,6 +7,7 @@ use App\models\Paciente;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -54,8 +55,7 @@ class User extends Authenticatable
     {
         return $this->with('medico', 'medico.especialidade')->where('tipo', $tipo)->where(function($query) use($data) {
             if (isset($data['nome']) && !is_null($data['nome']))
-                $query->where('name', 'like', '%'.$data['nome'].'%');
-
+                $query->where('name', 'ilike', '%'.$data['nome'].'%');
             if (isset($data['especialidade']) && !is_null($data['especialidade'])) 
                 $query->whereHas('medico.especialidade', function ($query) use($data) {
                     if (isset($data['especialidade']) && !is_null($data['especialidade']))

@@ -60,7 +60,8 @@ class MedicoController extends Controller
             'telefone' => $requestValidated['telefone'],
             'especialidade_id' => $requestValidated['especialidade_id'],
             'crm' => $requestValidated['crm'],
-            'rqe' => $requestValidated['rqe'],
+            'rqe_1' => $requestValidated['rqe_1'],
+            'rqe_2' => $requestValidated['rqe_2'],
             'foto' => $foto,
         ]);
         DB::commit();
@@ -100,7 +101,8 @@ class MedicoController extends Controller
             $medicoDados = [
                 'telefone' => $requestValidated['telefone'],
                 'especialidade_id' => $requestValidated['especialidade_id'],
-                'rqe' => $requestValidated['rqe'],
+                'rqe_1' => $requestValidated['rqe_1'],
+                'rqe_2' => $requestValidated['rqe_2'],
                 'crm' => $requestValidated['crm'],
             ];
         } else {
@@ -108,7 +110,8 @@ class MedicoController extends Controller
                 'telefone' => $requestValidated['telefone'],
                 'especialidade_id' => $requestValidated['especialidade_id'],
                 'crm' => $requestValidated['crm'],
-                'rqe' => $requestValidated['rqe'],
+                'rqe_1' => $requestValidated['rqe_1'],
+                'rqe_2' => $requestValidated['rqe_2'],
                 'foto' => $foto
             ];
         }

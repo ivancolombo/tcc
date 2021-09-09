@@ -74,7 +74,8 @@
                     </div>
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="text" name="telefone" class="celular form-control @error('telefone') is-invalid @enderror"
+                        <input type="text" name="telefone"
+                            class="celular form-control @error('telefone') is-invalid @enderror"
                             value="{{ old('telefone') }}">
                         @error('telefone')
                             <small class="text-danger">{{ $message }}</small>
@@ -104,13 +105,23 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="rqe">RQE</label>
-                        <input type="number" name="rqe" class="rqe form-control @error('rqe') is-invalid @enderror"
-                            value="{{ old('rqe') }}">
-                        @error('rqe')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="rqe_1">RQE</label>
+                            <input type="number" name="rqe_1" class="rqe_1 form-control @error('rqe_1') is-invalid @enderror"
+                                placeholder="RQE 1" value="{{old("rqe_1")}}">
+                            @error('rqe_1')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-6">    
+                            <label for="rqe_2" style="visibility: hidden;">RQE</label>                               
+                            <input type="number" name="rqe_2" class="rqe_2 form-control @error('rqe_2') is-invalid @enderror"
+                                placeholder="RQE 2" value="{{old("rqe_2")}}">
+                            @error('rqe_2')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-end">

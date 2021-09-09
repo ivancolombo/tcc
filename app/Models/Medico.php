@@ -11,7 +11,7 @@ class Medico extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'telefone', 'especialidade_id', 'crm', 'foto', 'rqe',
+        'telefone', 'especialidade_id', 'crm', 'foto', 'rqe_1', 'rqe_2'
     ];
 
     public function user()
