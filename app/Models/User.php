@@ -61,7 +61,7 @@ class User extends Authenticatable
                     if (isset($data['especialidade']) && !is_null($data['especialidade']))
                         $query->where('especialidade_id', $data['especialidade']);
                 });
-        })->paginate(3);
+        })->orderBy('name', 'asc')->paginate(3);
 
     }
 }

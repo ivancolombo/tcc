@@ -55,6 +55,11 @@
                                         <p class="text-muted text-sm mb-1"><b>E-mail: </b> {{  $user->email }} </p>
                                         <p class="text-muted text-sm mb-1"><b>Telefone: </b> {{  $user->medico->getTelefone()  }} </p>
                                         <p class="text-muted text-sm mb-1"><b>CRM: </b> {{ $user->medico->crm }} </p>
+                                        @if ($user->medico->rqe_1 || $user->medico->rqe_2 )
+                                            <p class="text-muted text-sm mb-1"><b>RQE: </b> 
+                                                {{ (!is_null($user->medico->rqe_1) && !is_null($user->medico->rqe_2)) ? $user->medico->rqe_1 .' - '. $user->medico->rqe_2 :  $user->medico->rqe_1 . $user->medico->rqe_2}} 
+                                            </p>                                            
+                                        @endif
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="{{ $user->medico->getFoto() }}"
