@@ -25,6 +25,7 @@ class AdministradorRequest extends FormRequest
     {
         $rules = [
             'nome' => 'required|string|max:255',
+            'tipo' => 'required',      
             'status' => 'nullable'      
         ];
 

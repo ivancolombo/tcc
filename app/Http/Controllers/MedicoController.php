@@ -94,8 +94,9 @@ class MedicoController extends Controller
                                     $requestValidated['nome'], 
                                     $requestValidated['email'], 
                                     isset($requestValidated['status']), 
-                                    isset($requestValidated['password']) ? $requestValidated['password'] : null
-                                );
+                                    isset($requestValidated['password']) ? $requestValidated['password'] : null,
+                                    null                                
+                                    );
 
         if (is_null($foto)) {
             $medicoDados = [

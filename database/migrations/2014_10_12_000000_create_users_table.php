@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('status')->default(1);
-            $table->enum('tipo', ['admin', 'medico', 'paciente']);
+            $table->enum('tipo', ['admin', 'medico', 'paciente', 'secretaria']);
         });
     }
 

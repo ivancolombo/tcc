@@ -69,8 +69,8 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <a href="#" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-user"></i> Perfil
+                                    <a href="#" class="btn btn-sm btn-success">
+                                        <i class="fas fa-calendar-alt mr-1"></i> Agendar
                                     </a>
                                 </div>
                             </div>

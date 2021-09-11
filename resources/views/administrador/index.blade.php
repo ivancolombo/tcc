@@ -21,6 +21,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
+                        <th>Tipo</th>
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
@@ -28,6 +29,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>E-mail</th>
+                        <th>Tipo</th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -78,6 +80,12 @@
                     },
                     {
                         data: 'email'
+                    },
+                    {
+                        data: 'tipo',
+                        render: function(data, type, row, meta) {
+                            return row.tipo === 'admin'? 'Administrador' : 'Secretaria';
+                        }
                     },
                     {
                         data: null,

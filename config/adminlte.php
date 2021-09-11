@@ -277,8 +277,6 @@ return [
             'icon'   => 'fas fa-fw fa-user-injured',  
             'active' => ['gerenciar/pacientes/*'],  
             'can'    => 'admin'        
-            // 'label'       => 4,
-            // 'label_color' => 'success',
         ],
         [
             'header' => 'Site',

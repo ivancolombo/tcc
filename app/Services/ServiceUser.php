@@ -19,14 +19,18 @@ class ServiceUser
         return $user;
     }
 
-    public function update(int $id, string $nome, string $email, bool $status, ?string $password): User
+    public function update(int $id, string $nome, string $email, bool $status, ?string $password, ?string $tipo): User
     {
         $user = User::find($id);             
         $user->name = $nome;
         $user->email = $email;
         $user->status = $status;
 
-        if (is_null($password)) {            
+        if (!is_null($tipo)) {            
+            $user->tipo = $tipo;
+        }
+
+        if (!is_null($password)) {            
             $user->password = Hash::make($password);
         }
 

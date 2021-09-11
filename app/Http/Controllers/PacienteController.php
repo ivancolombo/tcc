@@ -39,8 +39,7 @@ class PacienteController extends Controller
     public function store(PacienteRequest $request, ServiceUser $serviceUser)
     {
         $requestValidated = $request->validated();
-        // dd($requestValidated);
-
+        
         $foto = null;
 
         if ($request->hasFile('foto')) {
@@ -98,7 +97,8 @@ class PacienteController extends Controller
                                     $requestValidated['nome'], 
                                     $requestValidated['email'], 
                                     isset($requestValidated['status']), 
-                                    isset($requestValidated['password']) ? $requestValidated['password'] : null
+                                    isset($requestValidated['password']) ? $requestValidated['password'] : null,
+                                    null
                                 );
 
         if (is_null($foto)) {

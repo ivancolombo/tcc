@@ -20,6 +20,17 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" class="form-control @error('tipo') is-invalid @enderror">
+                            <option value="">Selecione</option>
+                            <option value="admin" {{ old('tipo') === 'admin'? 'selected' : '' }}>Administrador</option>
+                            <option value="secretaria" {{ old('tipo') === 'secretaria'? 'selected' : '' }}>Secretaria</option>
+                        </select>
+                        @error('tipo')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="nome">Nome</label>
                         <input type="text" name="nome" class="form-control @error('nome') is-invalid @enderror"
                             value="{{ old('nome') }}">

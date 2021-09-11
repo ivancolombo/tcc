@@ -23,7 +23,7 @@ class AdministradorController extends Controller
 
     public function list()
     {
-        $user = User::where('tipo', 'admin')->get();         
+        $user = User::where('tipo', 'admin')->orWhere('tipo', 'secretaria')->get();         
 
         return DataTables::of($user)->make(true);
     }
@@ -41,11 +41,11 @@ class AdministradorController extends Controller
         $user = $serviceUser->create($requestValidated['nome'], 
                                      $requestValidated['email'], 
                                      $requestValidated['password'], 
-                                     'admin'
+                                     $requestValidated['tipo']         
                                     );
         DB::commit();
 
-        Session::flash("success", "Administrador {$user->name} cadastrado com sucesso!");
+        Session::flash("success", "Usuario {$user->name} cadastrado com sucesso!");
 
         return redirect('gerenciar/administradores');
     }
@@ -60,17 +60,18 @@ class AdministradorController extends Controller
     public function update(int $id, AdministradorRequest $request, ServiceUser $serviceUser)
     {
         $requestValidated = $request->validated();
-
+        
         DB::beginTransaction();
         $user = $serviceUser->update($id, 
                                     $requestValidated['nome'], 
                                     $requestValidated['email'], 
                                     isset($requestValidated['status']), 
-                                    isset($requestValidated['password']) ? $requestValidated['password'] : null
+                                    isset($requestValidated['password']) ? $requestValidated['password'] : null,
+                                    $requestValidated['tipo']
                                 );
         DB::commit();
 
-        Session::flash("success", "Administrador {$user->name} atualizado com sucesso!");
+        Session::flash("success", "Usuario {$user->name} atualizado com sucesso!");
 
         return redirect('gerenciar/administradores');
     }

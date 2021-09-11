@@ -18,10 +18,21 @@
             <div class="card-header">
                 <h3 class="card-title">Editar</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body">                
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="status" name="status" {{ old("status", $user->status)? 'checked' : '' }}>
                     <label class="form-check-label" for="status">Ativo</label>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select name="tipo" class="form-control @error('tipo') is-invalid @enderror">
+                        <option value="">Selecione</option>
+                        <option value="admin" {{ old('tipo', $user->tipo) === 'admin'? 'selected' : '' }}>Administrador</option>
+                        <option value="secretaria" {{ old('tipo', $user->tipo) === 'secretaria'? 'selected' : '' }}>Secretaria</option>
+                    </select>
+                    @error('tipo')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="nome">Nome</label>
