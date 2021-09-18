@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Consulta extends Model
 {
     protected $fillable = [
-        'status', 'data', 'descricao', 'sala_id'
+        'data', 'descricao', 'sala_id'
     ];
 }

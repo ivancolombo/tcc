@@ -15,12 +15,13 @@ class CreateConsultasTable extends Migration
     {
         Schema::create('consultas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paciente_id');
-            $table->foreignId('medico_id');            
-            $table->string('status', 255);
+            $table->integer('paciente_id')->unsigned()->nullable();
+            $table->foreign('paciente_id')->references('id')->on('users');            
+            $table->integer('medico_id')->unsigned();        
+            $table->foreign('medico_id')->references('id')->on('users');            
             $table->dateTime('data', 0);
-            $table->text('descricao');
-            $table->text('sala_id');
+            $table->text('descricao')->nullable();
+            $table->text('sala_id')->nullable();
         });
     }
 

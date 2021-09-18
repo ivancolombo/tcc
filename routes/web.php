@@ -55,6 +55,11 @@ Route::group(['prefix' => 'gerenciar'], function () {
         Route::get('{id}/editar', 'AdministradorController@edit');
         Route::patch('{id}', 'AdministradorController@update');
     });
+
+    Route::group(['prefix' => 'agenda'], function () {
+        Route::get('/', 'MedicoAgendaController@create');
+        Route::post('/', 'MedicoAgendaController@store');
+    });
 });
 
 Route::get('/medicos', 'MedicoController@listForPatients');

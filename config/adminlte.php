@@ -265,6 +265,13 @@ return [
             'can'    => 'admin'
         ],
         [
+            'text'   => 'Gerenciar Agenda',
+            'url'    => 'gerenciar/agenda',
+            'icon'   => 'fas fa-fw fa-calendar-alt',              
+            'active' => ['gerenciar/agenda/*'], 
+            'can'    => 'admin'
+        ],
+        [
             'text'   => 'Médicos',
             'url'    => 'gerenciar/medicos',
             'icon'   => 'fas fa-fw fa-user-md',  
