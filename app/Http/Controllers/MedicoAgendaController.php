@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Session;
 
 class MedicoAgendaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:admin');
+    }
+    
     public function create()
     {
         $medicos = User::where('tipo', 'medico')
