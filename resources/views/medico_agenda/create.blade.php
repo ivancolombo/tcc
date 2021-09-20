@@ -34,31 +34,38 @@
                         <div class="col-6">
                             <label for="dias">Dias da semana</label>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="domingo" value="0" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="domingo" value="0" name="dias[]" {{ in_array(0, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="domingo">Domingo</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="segunda" value="1" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="segunda" value="1" name="dias[]" {{ in_array(1, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="segunda">Segunda</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="terca" value="2" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="terca" value="2" name="dias[]" {{ in_array(2, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="terca">Terça</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="quarta" value="3" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="quarta" value="3" name="dias[]" {{ in_array(3, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="quarta">Quarta</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="quinta" value="4" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="quinta" value="4" name="dias[]" {{ in_array(4, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="quinta">Quinta</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="sexta" value="5" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="sexta" value="5" name="dias[]" {{ in_array(5, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sexta">Sexta</label>
                             </div>
                             <div class="form-group form-check mb-1">
-                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror" id="sabado" value="6" name="dias[]">
+                                <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
+                                    id="sabado" value="6" name="dias[]" {{ in_array(6, old('dias', [])) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="sabado">Sábado</label>
                             </div>
                             @error('dias')
