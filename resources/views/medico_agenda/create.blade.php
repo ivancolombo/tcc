@@ -23,7 +23,7 @@
                         <select name="medico" class="form-control @error('medico') is-invalid @enderror">
                             <option value="">Selecione</option>
                             @foreach ($medicos as $medico)
-                                <option value="{{ $medico->id }}">{{ $medico->name }}</option>
+                                <option value="{{ $medico->id }}" {{ old('medico') == $medico->id? 'selected' : '' }}>{{ $medico->name }}</option>
                             @endforeach
                         </select>
                         @error('medico')
@@ -132,6 +132,28 @@
         $(document).ready(function() {
             @if (Session::has('success'))
                 Command: toastr["success"]("{{ Session::get('success') }}")
+            
+                toastr.options = {
+                closeButton: false,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+                }
+            @endif
+
+            @if (Session::has('error'))
+                Command: toastr["error"]("{{ Session::get('error') }}")
             
                 toastr.options = {
                 closeButton: false,

@@ -57,7 +57,8 @@ Route::group(['prefix' => 'gerenciar'], function () {
     });
 
     Route::group(['prefix' => 'agenda'], function () {
-        Route::get('/', 'MedicoAgendaController@create');
+        Route::get('/', 'MedicoAgendaController@index');
+        Route::get('/novo', 'MedicoAgendaController@create');
         Route::post('/', 'MedicoAgendaController@store');
     });
 });
