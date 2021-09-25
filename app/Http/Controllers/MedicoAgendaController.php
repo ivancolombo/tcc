@@ -24,12 +24,13 @@ class MedicoAgendaController extends Controller
 
         $horarios = [];
         if (!is_null($medicoId)) {            
-            $horarios = Consulta::where('medico_id', $medicoId)
+            $horarios = Consulta::with('paciente.user')
+                                ->where('medico_id', $medicoId)
                                 ->where('data', '>=', $data . ' 00:00:00')
                                 ->where('data', '<=', $data . ' 23:59:00')
+                                ->orderBy('data')
                                 ->get();
         }
-        // dd($horarios);
 
         $medicos = User::where('tipo', 'medico')
                 ->orderBy('name')
@@ -38,13 +39,13 @@ class MedicoAgendaController extends Controller
         return view('medico_agenda.index', compact('horarios', 'medicos', 'data', 'medicoId'));
     }
     
-    public function create()
+    public function create(int $medicoId)
     {
-        $medicos = User::where('tipo', 'medico')
-                ->orderBy('name')
-                ->get();
+        $medico = User::where('tipo', 'medico')
+                        ->where('id', $medicoId)
+                        ->first();
 
-        return view('medico_agenda.create', compact('medicos'));
+        return view('medico_agenda.create', compact('medico'));
     }
 
     public function store(MedicoAgendaRequest $request)
@@ -93,6 +94,28 @@ class MedicoAgendaController extends Controller
             dd($th);
         }
         Session::flash("success", "Agenda cadastrada com sucesso!");
+        return redirect('/gerenciar/agenda?medico='.$validatedData['medico']);
+    }
+
+    public function destroy($id)
+    {
+        $consulta = Consulta::find($id);
+        $horario = date('H:i', strtotime($consulta->data));
+        $consulta->delete();
+
+        Session::flash("success", "Horário {$horario} excluido com sucesso!");
+        return redirect()->back();
+    }
+
+    public function desmarcarConsulta($id)
+    {
+        $consulta = Consulta::with('paciente.user')->find($id);
+        $paciente = $consulta->paciente->user->name;
+
+        $consulta->paciente_id = null;
+        $consulta->save();
+
+        Session::flash("success", "Consulta do {$paciente} desmarcada com sucesso!");
         return redirect()->back();
     }
 }

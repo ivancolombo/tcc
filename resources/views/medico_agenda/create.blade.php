@@ -3,7 +3,8 @@
     <div class="col-sm-6">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Gerenciar Agenda</li>
+            <li class="breadcrumb-item"><a href="/gerenciar/agenda?medico={{$medico->id}}">Gerenciar Agenda</a></li>
+            <li class="breadcrumb-item active">Cadastrar Horários - {{ $medico->name }}</li>
         </ol>
     </div>
 @stop
@@ -15,10 +16,11 @@
             @method('POST')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Gerenciar Agenda</h3>
+                    <h3 class="card-title">Cadastrar Horários - {{ $medico->name }}</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
+                    <input type="hidden" name="medico" value="{{ $medico->id }}">
+                    {{-- <div class="form-group">
                         <label for="data_fim">Médico</label>
                         <select name="medico" class="form-control @error('medico') is-invalid @enderror">
                             <option value="">Selecione</option>
@@ -29,7 +31,7 @@
                         @error('medico')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-6">
                             <label for="dias">Dias da semana</label>
@@ -121,7 +123,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <button class="btn btn-primary">Abrir</button>
+                    <button class="btn btn-primary">Salvar</button>
                 </div>
             </div>
         </form>
