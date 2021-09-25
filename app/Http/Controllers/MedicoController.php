@@ -16,7 +16,7 @@ class MedicoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:admin');
+        $this->middleware('can:admin')->except('listForPatients');
     }
     
     public function index()

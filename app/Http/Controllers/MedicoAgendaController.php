@@ -14,7 +14,7 @@ class MedicoAgendaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:admin');
+        $this->middleware('can:secretaria')->except('agendar');
     }
 
     public function index(Request $request)
@@ -159,5 +159,20 @@ class MedicoAgendaController extends Controller
 
         Session::flash("success", "Agenda atualizada com sucesso!");
         return redirect('/gerenciar/agenda?medico='.$validatedData['medico']);
+    }
+
+    public function agendar($medicoId, Request $request)
+    {
+        $data = is_null($request->data)? date('Y-m-d', strtotime('now')) : $request->data;
+        
+        $medico = User::find($medicoId);
+
+        $horarios = Consulta::where('medico_id', $medicoId)
+                              ->where('data', '>=', $data.' 00:00:00')
+                              ->where('data', '<=', $data.' 23:59:00')
+                              ->where('paciente_id', null)
+                              ->get();                             
+
+        return view('medico_agenda.paciente_agendar', compact('medico', 'horarios', 'data'));
     }
 }

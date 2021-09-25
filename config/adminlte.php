@@ -269,7 +269,7 @@ return [
             'url'    => 'gerenciar/agenda',
             'icon'   => 'fas fa-fw fa-calendar-alt',              
             'active' => ['gerenciar/agenda/*'], 
-            'can'    => 'admin'
+            'can'    => 'secretaria'
         ],
         [
             'text'   => 'Médicos',
@@ -294,7 +294,7 @@ return [
             'url'    => 'medicos',
             'icon'   => 'fas fa-fw fa-user-md',  
             'active' => ['medicos/*'],   
-            'can'    => 'admin'    
+            'can'    => 'paciente'    
         ],
         // ['header' => 'account_settings'],
         // [

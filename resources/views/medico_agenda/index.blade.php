@@ -112,32 +112,6 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="modal fade" id="modalExclusao{{ $key }}" tabindex="-1"
-                                            aria-labelledby="modalExclusaoLabel" aria-hidden="true">
-                                            <form action="{{ url('/gerenciar/agenda', $horario->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Confirmar exclusão!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <h6>Deseja excluir o horário {{ date('H:i', strtotime($horario->data)) }}?</h6>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cancelar</button>
-                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
                                     @endif
                                     @if (!is_null($horario->paciente_id))
                                         <div class="modal fade" id="modalDesmarcarConsulta{{ $key }}" tabindex="-1"

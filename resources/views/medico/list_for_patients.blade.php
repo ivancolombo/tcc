@@ -69,7 +69,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-right">
-                                    <a href="#" class="btn btn-sm btn-success">
+                                    <a href="{{ url('/medicos/'.$user->id.'/agendar') }}" class="btn btn-sm btn-success">
                                         <i class="fas fa-calendar-alt mr-1"></i> Agendar
                                     </a>
                                 </div>

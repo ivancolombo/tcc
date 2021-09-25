@@ -67,4 +67,7 @@ Route::group(['prefix' => 'gerenciar'], function () {
     });
 });
 
-Route::get('/medicos', 'MedicoController@listForPatients');
+Route::group(['prefix' => 'medicos'], function () {
+    Route::get('/', 'MedicoController@listForPatients');
+    Route::get('{id}/agendar', 'MedicoAgendaController@agendar');
+});
