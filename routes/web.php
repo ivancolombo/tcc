@@ -62,6 +62,8 @@ Route::group(['prefix' => 'gerenciar'], function () {
         Route::post('/', 'MedicoAgendaController@store');
         Route::delete('{id}', 'MedicoAgendaController@destroy');
         Route::patch('{id}/desmarcar-consulta', 'MedicoAgendaController@desmarcarConsulta');
+        Route::get('remover/medico/{medicoId}', 'MedicoAgendaController@viewRemoverHorarios');
+        Route::delete('/', 'MedicoAgendaController@removerHorarios');
     });
 });
 

@@ -17,7 +17,7 @@
                     <h3 class="card-title">Gerenciar Agenda</h3>
                     <div class="card-tools">
                         @if (!is_null($medicoId))
-                            <a href="{{ url('gerenciar/agenda/medico', $medicoId) }}" class="btn btn-info btn-sm">Excluir Horários</a>                            
+                            <a href="{{ url('gerenciar/agenda/remover/medico', $medicoId) }}" class="btn btn-info btn-sm">Excluir Horários</a>                            
                             <a href="{{ url('gerenciar/agenda/medico', $medicoId) }}" class="btn btn-primary btn-sm">Cadastrar Horários</a>                            
                         @endif
                     </div>

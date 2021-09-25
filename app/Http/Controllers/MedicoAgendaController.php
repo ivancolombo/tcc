@@ -118,4 +118,46 @@ class MedicoAgendaController extends Controller
         Session::flash("success", "Consulta do {$paciente} desmarcada com sucesso!");
         return redirect()->back();
     }
+
+    public function viewRemoverHorarios(int $medicoId)
+    {
+        $medico = User::where('tipo', 'medico')
+                        ->where('id', $medicoId)
+                        ->first();
+
+        return view('medico_agenda.delete', compact('medico'));
+    }
+
+    public function removerHorarios(MedicoAgendaRequest $request)
+    {
+        $validatedData = $request->validated();
+        
+        $consultas = Consulta::where('medico_id', $validatedData['medico'])
+                              ->where('data', '>=', $validatedData['data_inicio'] . ' 00:00:00')
+                              ->where('data', '<=', $validatedData['data_fim']. ' 23:59:00')
+                              ->get();
+
+        $consultasId = [];
+        foreach ($consultas as $consulta) {
+            $horaInicio = date('H:i', strtotime($validatedData['hora_inicio']));
+            $horaFim = date('H:i', strtotime($validatedData['hora_fim']));  
+
+            $diaSemana = date('w', strtotime($consulta->data));
+            $horaConsulta = date('H:i', strtotime($consulta->data));
+            
+            if (in_array($diaSemana, $validatedData['dias'], true) && $horaConsulta >= $horaInicio && $horaConsulta <= $horaFim) {
+                array_push($consultasId, $consulta->id);                
+            }
+        }
+
+        if (count($consultasId) == 0) {
+            Session::flash('error', 'Nenhum horario encontrado!');
+            return redirect()->back()->withInput();
+        }
+
+        Consulta::whereIn('id', $consultasId)->delete();
+
+        Session::flash("success", "Agenda atualizada com sucesso!");
+        return redirect('/gerenciar/agenda?medico='.$validatedData['medico']);
+    }
 }

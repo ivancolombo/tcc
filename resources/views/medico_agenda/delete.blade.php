@@ -4,19 +4,19 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/gerenciar/agenda?medico={{$medico->id}}">Gerenciar Agenda</a></li>
-            <li class="breadcrumb-item active">Cadastrar Horários - {{ $medico->name }}</li>
+            <li class="breadcrumb-item active">Remover Horários - {{ $medico->name }}</li>
         </ol>
     </div>
 @stop
 @section('content')
     <div class="d-flex justify-content-center">
-        <form action="{{ url('gerenciar/agenda') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ url('gerenciar/agenda/') }}" method="POST" enctype="multipart/form-data"
             class="col-12 col-sm-9 col-md-8 col-lg-8 col-xl-5">
             @csrf
-            @method('POST')
+            @method('delete')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Cadastrar Horários - {{ $medico->name }}</h3>
+                    <h3 class="card-title">Remover Horários - {{ $medico->name }}</h3>
                 </div>
                 <div class="card-body">
                     <input type="hidden" name="medico" value="{{ $medico->id }}">
@@ -96,14 +96,6 @@
                                 <input type="time" class="form-control @error('hora_fim') is-invalid @enderror"
                                     name="hora_fim" value="{{ old('hora_fim') }}">
                                 @error('hora_fim')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="intervalo_horario">Intervalo Horario</label>
-                                <input type="number" class="form-control @error('intervalo_horario') is-invalid @enderror"
-                                    name="intervalo_horario" value="{{ old('intervalo_horario') }}">
-                                @error('intervalo_horario')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
