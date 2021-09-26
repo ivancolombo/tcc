@@ -6,7 +6,9 @@ use App\Http\Requests\MedicoAgendaRequest;
 use App\models\Consulta;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class MedicoAgendaController extends Controller
@@ -113,6 +115,8 @@ class MedicoAgendaController extends Controller
         $paciente = $consulta->paciente->user->name;
 
         $consulta->paciente_id = null;
+        $consulta->descricao_paciente = null;
+        $consulta->sala_id = null;
         $consulta->save();
 
         Session::flash("success", "Consulta do {$paciente} desmarcada com sucesso!");
@@ -161,7 +165,7 @@ class MedicoAgendaController extends Controller
         return redirect('/gerenciar/agenda?medico='.$validatedData['medico']);
     }
 
-    public function agendar($medicoId, Request $request)
+    public function horarios($medicoId, Request $request)
     {
         $data = is_null($request->data)? date('Y-m-d', strtotime('now')) : $request->data;
         
@@ -171,8 +175,27 @@ class MedicoAgendaController extends Controller
                               ->where('data', '>=', $data.' 00:00:00')
                               ->where('data', '<=', $data.' 23:59:00')
                               ->where('paciente_id', null)
+                              ->orderBy('data')
                               ->get();                             
 
         return view('medico_agenda.paciente_agendar', compact('medico', 'horarios', 'data'));
+    }
+
+    public function agendar(int $id, Request $request)
+    {        
+        $consulta = Consulta::find($id);
+
+        if (!is_null($consulta->paciente_id)) {
+            Session::flash('error', 'Ops, este horario não está disponivel!');
+            return redirect()->back();
+        }
+
+        $consulta->paciente_id = Auth::id();
+        $consulta->descricao_paciente = $request->descricao;
+        $consulta->sala_id = Hash::make($consulta->id.$consulta->paciente_id.$consulta->medico_id.$consulta->data.strtotime('now'));        
+        $consulta->save();
+
+        Session::flash('success', 'Consulta agendada com sucesso!');
+        return redirect()->back();
     }
 }

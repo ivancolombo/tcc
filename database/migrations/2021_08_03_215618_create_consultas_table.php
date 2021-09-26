@@ -20,7 +20,7 @@ class CreateConsultasTable extends Migration
             $table->integer('medico_id')->unsigned();        
             $table->foreign('medico_id')->references('id')->on('users');            
             $table->dateTime('data', 0);
-            $table->text('descricao')->nullable();
+            $table->text('descricao_paciente')->nullable();
             $table->text('sala_id')->nullable();
         });
     }

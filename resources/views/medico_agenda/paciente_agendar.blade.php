@@ -55,20 +55,27 @@
                                     @if (strtotime($horario->data) > strtotime('now')) 
                                         <div class="modal fade" id="modalAgendar{{ $key }}" tabindex="-1"
                                             aria-labelledby="modalAgendarLabel" aria-hidden="true">
-                                            <form action="{{ url('/gerenciar/agenda', $horario->id) }}" method="post">
+                                            <form action="{{ url('medicos/agendar', $horario->id) }}" method="post">
                                                 @csrf
-                                                @method('delete')
+                                                @method('patch')
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title">Confirmar exclusão!</h5>
+                                                            <h5 class="modal-title">Agendar Consulta!</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h6>Deseja excluir o horário {{ date('H:i', strtotime($horario->data)) }}?</h6>
+                                                            <h6><span class="text-bold">Horário:</span> {{ date('H:i', strtotime($horario->data)) }}</h6>
+                                                            <div class="form-group">
+                                                                <label for="descricao">Descrição</label>
+                                                                <textarea name="descricao" class="form-control @error('descricao') is-invalid @enderror"></textarea>
+                                                                @error('descricao')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

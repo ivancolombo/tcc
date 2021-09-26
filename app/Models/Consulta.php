@@ -8,7 +8,7 @@ class Consulta extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'data', 'descricao', 'sala_id'
+        'data', 'descricao', 'sala_id', 'descricao_paciente'
     ];
 
     public function paciente()
