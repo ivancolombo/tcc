@@ -246,10 +246,10 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
-        [
-            'header' => 'Gerenciar',
-            'can'    => 'admin'
-        ],
+        // [
+        //     'header' => 'Gerenciar',
+        //     'can'    => 'admin'
+        // ],
         [
             'text'   => 'Administradores',
             'url'    => 'gerenciar/administradores',
@@ -285,10 +285,10 @@ return [
             'active' => ['gerenciar/pacientes/*'],  
             'can'    => 'admin'        
         ],
-        [
-            'header' => 'Site',
-            'can'    => 'admin'
-        ],
+        // [
+        //     'header' => 'Site',
+        //     'can'    => 'admin'
+        // ],
         [
             'text'   => 'Minha Agenda',
             'url'    => 'minha-agenda',
