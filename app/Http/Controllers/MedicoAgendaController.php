@@ -26,7 +26,7 @@ class MedicoAgendaController extends Controller
 
         $horarios = [];
         if (!is_null($medicoId)) {            
-            $horarios = Consulta::with('paciente.user')
+            $horarios = Consulta::with('paciente')
                                 ->where('medico_id', $medicoId)
                                 ->where('data', '>=', $data . ' 00:00:00')
                                 ->where('data', '<=', $data . ' 23:59:00')

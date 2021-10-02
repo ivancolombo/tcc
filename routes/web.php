@@ -72,3 +72,7 @@ Route::group(['prefix' => 'medicos'], function () {
     Route::get('{id}/agendar', 'MedicoAgendaController@horarios');
     Route::patch('/agendar/{id}', 'MedicoAgendaController@agendar');
 });
+
+Route::group(['prefix' => 'minhas-consultas'], function () {
+    Route::get('/', 'PacienteConsultaController@index');
+});

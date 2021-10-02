@@ -63,7 +63,7 @@
                                         <td class="col-10 text-center mt-1 mb-1 @if (is_null($horario->paciente_id)) bg-success @else bg-secondary @endif">
                                             {{ date('H:i', strtotime($horario->data)) }}
                                             @if (!is_null($horario->paciente_id))
-                                                - {{ $horario->paciente->user->name }}
+                                                - {{ $horario->paciente->name }}
                                             @endif
                                         </td>
                                         <td class="col-2 text-center">
@@ -130,7 +130,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <h6>
-                                                                Deseja desmarcar a consulta do {{ $horario->paciente->user->name }} as
+                                                                Deseja desmarcar a consulta do {{ $horario->paciente->name }} as
                                                                 {{ date('H:i', strtotime($horario->data)) }}?                                                            
                                                             </h6>
                                                         </div>

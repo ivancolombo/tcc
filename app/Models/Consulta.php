@@ -2,6 +2,7 @@
 
 namespace App\models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Consulta extends Model
@@ -13,7 +14,12 @@ class Consulta extends Model
 
     public function paciente()
     {
-        return $this->hasOne(Paciente::class, 'id', 'paciente_id');
+        return $this->hasOne(User::class, 'id', 'paciente_id');
+    }
+
+    public function medico()
+    {
+        return $this->hasOne(User::class, 'id', 'medico_id');
     }
 
 }
