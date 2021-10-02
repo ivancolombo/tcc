@@ -17,6 +17,7 @@ class MedicoAgendaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('can:secretaria')->except('agendar', 'horarios', 'minhaAgenda');
+        $this->middleware('can:medico')->only('minhaAgenda');
     }
 
     public function minhaAgenda(Request $request)

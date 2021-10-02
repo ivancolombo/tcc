@@ -290,6 +290,18 @@ return [
             'can'    => 'admin'
         ],
         [
+            'text'   => 'Minha Agenda',
+            'url'    => 'minha-agenda',
+            'icon'   => 'fas fa-fw fa-calendar-alt',  
+            'can'    => 'medico'    
+        ],
+        [
+            'text'   => 'Minhas Consultas',
+            'url'    => 'minhas-consultas',
+            'icon'   => 'fas fa-fw fa-calendar-alt',  
+            'can'    => 'paciente'    
+        ],
+        [
             'text'   => 'Médicos',
             'url'    => 'medicos',
             'icon'   => 'fas fa-fw fa-user-md',  

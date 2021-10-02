@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PacienteConsultaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:paciente');
+    }
+
     public function index(Request $request)
     {
         $data = is_null($request->data)? date('Y-m-d', strtotime('now')) : $request->data;
