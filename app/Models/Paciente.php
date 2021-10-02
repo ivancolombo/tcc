@@ -26,4 +26,18 @@ class Paciente extends Model
         return Storage::url($this->foto);
     }
 
+    public function getTelefone()
+    {
+        $mask = strlen($this->telefone) === 11? "(%s%s) %s%s%s%s%s-%s%s%s%s" : "(%s%s) %s%s%s%s-%s%s%s%s";
+        
+        return vsprintf($mask, str_split($this->telefone));
+    }
+
+    public function getCpf()
+    {
+        $mask = "%s%s%s.%s%s%s.%s%s%s-%s%s";
+        
+        return vsprintf($mask, str_split($this->cpf));
+    }
+
 }

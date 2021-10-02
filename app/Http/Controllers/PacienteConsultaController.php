@@ -18,6 +18,6 @@ class PacienteConsultaController extends Controller
                              ->where('data', '<=', $data.' 23:59:00')
                              ->get();
 
-        return view('paciente_consulta.index', compact('consultas', 'data'));
+        return view('paciente_consulta.minhas_consultas', compact('consultas', 'data'));
     }
 }

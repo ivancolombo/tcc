@@ -16,7 +16,21 @@ class MedicoAgendaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:secretaria')->except('agendar', 'horarios');
+        $this->middleware('can:secretaria')->except('agendar', 'horarios', 'minhaAgenda');
+    }
+
+    public function minhaAgenda(Request $request)
+    {
+        $data = is_null($request->data)? date('Y-m-d', strtotime('now')) : $request->data;
+
+        $consultas = Consulta::with('paciente', 'paciente.paciente', 'paciente.paciente.endereco')
+                             ->where('medico_id', Auth::id())
+                             ->where('paciente_id', '!=', null)
+                             ->where('data', '>=', $data.' 00:00:00')
+                             ->where('data', '<=', $data.' 23:59:00')
+                             ->get();        
+
+        return view('medico_agenda.minha_agenda', compact('consultas', 'data'));
     }
 
     public function index(Request $request)

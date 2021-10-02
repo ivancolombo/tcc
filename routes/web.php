@@ -76,3 +76,7 @@ Route::group(['prefix' => 'medicos'], function () {
 Route::group(['prefix' => 'minhas-consultas'], function () {
     Route::get('/', 'PacienteConsultaController@index');
 });
+
+Route::group(['prefix' => 'minha-agenda'], function () {
+    Route::get('/', 'MedicoAgendaController@minhaAgenda');
+});
