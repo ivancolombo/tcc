@@ -46,7 +46,7 @@
                             <div class="card-footer">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="text-muted text-sm mb-1"><b>Horario: </b> {{ date('H:i', strtotime($consulta->data)) }} </p>
-                                    <a href="" class="btn btn-sm btn-success"> 
+                                    <a href="{{ url('minha-agenda', $consulta->id) }}" class="btn btn-sm btn-success"> 
                                         <i class="fas fa-video mr-1"></i> Iniciar
                                     </a>
                                 </div>
