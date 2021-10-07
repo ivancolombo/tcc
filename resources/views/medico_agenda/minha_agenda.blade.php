@@ -32,10 +32,14 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <h2 class="lead"><b>{{ $consulta->paciente->name }}</b></h2>
-                                        <p class="text-muted text-sm mb-1"><b>E-mail: </b> {{ $consulta->paciente->email }} </p>
-                                        <p class="text-muted text-sm mb-1"><b>Telefone: </b> {{ $consulta->paciente->paciente->getTelefone() }} </p>
-                                        <p class="text-muted text-sm mb-1"><b>Cidade: </b> {{ $consulta->paciente->paciente->endereco->cidade }} </p>
-                                        <p class="text-muted text-sm mb-1"><b>CPF: </b> {{ $consulta->paciente->paciente->getCpf() }} </p>
+                                        <p class="text-muted text-sm mb-1"><b>E-mail: </b>
+                                            {{ $consulta->paciente->email }} </p>
+                                        <p class="text-muted text-sm mb-1"><b>Telefone: </b>
+                                            {{ $consulta->paciente->paciente->getTelefone() }} </p>
+                                        <p class="text-muted text-sm mb-1"><b>Cidade: </b>
+                                            {{ $consulta->paciente->paciente->endereco->cidade }} </p>
+                                        <p class="text-muted text-sm mb-1"><b>CPF: </b>
+                                            {{ $consulta->paciente->paciente->getCpf() }} </p>
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="{{ $consulta->paciente->paciente->getFoto() }}"
@@ -45,8 +49,9 @@
                             </div>
                             <div class="card-footer">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <p class="text-muted text-sm mb-1"><b>Horario: </b> {{ date('H:i', strtotime($consulta->data)) }} </p>
-                                    <a href="{{ url('minha-agenda', $consulta->id) }}" class="btn btn-sm btn-success"> 
+                                    <p class="text-muted text-sm mb-1"><b>Horario: </b>
+                                        {{ date('H:i', strtotime($consulta->data)) }} </p>
+                                    <a href="{{ url('minha-agenda', $consulta->id) }}" class="btn btn-sm btn-success">
                                         <i class="fas fa-video mr-1"></i> Iniciar
                                     </a>
                                 </div>
@@ -60,3 +65,30 @@
         </div>
     </div>
 @stop
+@section('js')
+    <script>
+        $(document).ready(function() {
+            @if (Session::has('success'))
+                Command: toastr["success"]("{{ Session::get('success') }}")
+            
+                toastr.options = {
+                closeButton: false,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+                }
+            @endif
+        });
+    </script>
+@endsection

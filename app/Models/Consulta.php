@@ -9,8 +9,13 @@ class Consulta extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'data', 'descricao', 'sala_id', 'descricao_paciente'
+        'data', 'descricao', 'sala_id', 'descricao_paciente', 'descricao_medico'
     ];
+
+    protected $casts = [
+        'data' => 'datetime:d/m/Y H:i',
+    ];
+    
 
     public function paciente()
     {

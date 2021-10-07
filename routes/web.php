@@ -80,4 +80,7 @@ Route::group(['prefix' => 'minhas-consultas'], function () {
 Route::group(['prefix' => 'minha-agenda'], function () {
     Route::get('/', 'MedicoAgendaController@minhaAgenda');
     Route::get('{id}', 'MedicoConsultaController@index');
+    Route::patch('{id}', 'MedicoConsultaController@finalizarConsulta');
+    Route::get('historico-paciente/{pacienteId}', 'MedicoConsultaController@historicoPaciente');
+    Route::get('{id}/video-chamada', 'MedicoConsultaController@videoChamada');
 });

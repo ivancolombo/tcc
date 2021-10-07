@@ -84,7 +84,7 @@
                     {
                         data: 'tipo',
                         render: function(data, type, row, meta) {
-                            return row.tipo === 'admin'? 'Administrador' : 'Secretaria';
+                            return row.tipo === 'admin'? 'Administrador' : 'Secretária';
                         }
                     },
                     {
