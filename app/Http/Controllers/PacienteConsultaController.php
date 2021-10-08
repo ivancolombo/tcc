@@ -24,6 +24,14 @@ class PacienteConsultaController extends Controller
                              ->where('data', '<=', $data.' 23:59:00')
                              ->get();
 
+        $consulta = $consultas->first();
+
         return view('paciente_consulta.minhas_consultas', compact('consultas', 'data'));
+    }
+
+    public function videoChamada(int $id)
+    {
+        $consulta = Consulta::find($id);
+        return view('paciente_consulta.video_chamada', compact('consulta'));
     }
 }

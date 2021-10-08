@@ -18,7 +18,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Dados da Consulta</h3>
                         <div class="card-tools">
-                            <a target="_blank" href="{{ url('minha-agenda/'.$consulta->id.'/video-chamada') }}" class="btn btn-success btn-sm">Iniciar chamada</a>
+                            <a target="_blank" href="{{ url('minha-agenda/' . $consulta->id . '/video-chamada') }}"
+                                class="btn btn-success btn-sm">Iniciar chamada</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -99,12 +100,42 @@
                 </div>
             </form>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-labelledby="modalDetalhesTitulo" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDetalhesTitulo"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <p class="text-muted text-sm mb-1"><b>Descrição Paciente: </b> </p>
+                                <p id="descricao_paciente"></p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <p class="text-muted text-sm mb-1"><b>Descrição Médico: </b> </p>
+                                <p id="descricao_medico"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable({
+            let table = $('#dataTable').DataTable({
                 language: {
                     sEmptyTable: "Nenhum registro encontrado",
                     sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -145,10 +176,10 @@
                         data: null,
                         orderable: false,
                         render: function(data, type, row, meta) {
-                            let campo = `<div class="d-flex justify-content-center">
+                            let campo = `<div class="d-flex justify-content-center">                                        
                                         <button type="button" class="btn btn-primary btn-sm detalhes" data-toggle="tooltip" data-placement="left" title="Detalhes">
                                             <i class="fas fa-plus"></i>
-                                        </button>
+                                        </button>                                        
                                     </div>`;
 
                             return campo;
@@ -164,6 +195,16 @@
                 initComplete: function(settings, json) {
                     $('[data-toggle="tooltip"]').tooltip();
                 }
+            });
+
+            $('#dataTable tbody').on('click', '.detalhes', function() {
+                let data = table.row($(this).parents('tr')).data();
+
+                $('#modalDetalhesTitulo').text('Detalhes consulta dia ' + data.data);
+                $('#descricao_paciente').text(data.descricao_paciente ?? '-');
+                $('#descricao_medico').text(data.descricao_medico ?? '-');                
+
+                $('#modalDetalhes').modal('show');                
             });
 
         });

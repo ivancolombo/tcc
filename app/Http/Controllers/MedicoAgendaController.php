@@ -211,6 +211,6 @@ class MedicoAgendaController extends Controller
         $consulta->save();
 
         Session::flash('success', 'Consulta agendada com sucesso!');
-        return redirect()->back();
+        return redirect('minhas-consultas');
     }
 }

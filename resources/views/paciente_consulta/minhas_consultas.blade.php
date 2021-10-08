@@ -55,9 +55,13 @@
                             <div class="card-footer">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="text-muted text-sm mb-1"><b>Horario: </b> {{ date('H:i', strtotime($consulta->data)) }} </p>
-                                    <a href="" class="btn btn-sm btn-success"> 
-                                        <i class="fas fa-video mr-1"></i> Iniciar
-                                    </a>
+
+                                    @if (date('Y-m-d H:i', strtotime("+10 minutes", strtotime("now"))) >= date('Y-m-d H:i', strtotime($consulta->data)) && 
+                                        date('Y-m-d H:i', strtotime("-10 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)))
+                                        <a href="{{url('minhas-consultas', $consulta->id)}}" class="btn btn-sm btn-success"> 
+                                            <i class="fas fa-video mr-1"></i> Iniciar
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -69,3 +73,31 @@
         </div>
     </div>
 @stop
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            @if (Session::has('success'))
+                Command: toastr["success"]("{{ Session::get('success') }}")
+            
+                toastr.options = {
+                closeButton: false,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: false,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut"
+                }
+            @endif
+        });
+    </script>
+@endsection

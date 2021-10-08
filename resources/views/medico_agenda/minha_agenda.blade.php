@@ -51,9 +51,12 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="text-muted text-sm mb-1"><b>Horario: </b>
                                         {{ date('H:i', strtotime($consulta->data)) }} </p>
-                                    <a href="{{ url('minha-agenda', $consulta->id) }}" class="btn btn-sm btn-success">
-                                        <i class="fas fa-video mr-1"></i> Iniciar
-                                    </a>
+                                    @if (date('Y-m-d H:i', strtotime("+10 minutes", strtotime("now"))) >= date('Y-m-d H:i', strtotime($consulta->data)) && 
+                                        date('Y-m-d H:i', strtotime("-10 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)))
+                                        <a href="{{ url('minha-agenda', $consulta->id) }}" class="btn btn-sm btn-success">
+                                            <i class="fas fa-video mr-1"></i> Iniciar
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
