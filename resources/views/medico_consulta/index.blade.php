@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-xl-4">
                                 <h2 class="lead"><b>{{ $consulta->paciente->name }}</b></h2>
                                 <p class="text-muted text-sm mb-1"><b>Horário: </b>
                                     {{ date('H:i', strtotime($consulta->data)) }} </p>
@@ -35,7 +35,7 @@
                                     {{ $consulta->paciente->paciente->getCpf() }}
                                 </p>
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-md-6 col-xl-4">
                                 <p class="text-muted text-sm mb-1"><b>Estado: </b>
                                     {{ $consulta->paciente->paciente->endereco->estado }} </p>
                                 <p class="text-muted text-sm mb-1"><b>Cidade: </b>
@@ -49,13 +49,13 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-8">
+                            <div class="col-12 col-xl-8">
                                 <p class="text-muted text-sm mb-1"><b>Descrição: </b> </p>
                                 <p>{{ $consulta->descricao_paciente ?? '-' }}</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-8">
+                            <div class="form-group col-12 col-xl-8">
                                 <label for="observacao" class="text-muted text-sm">Observação:</label>
                                 <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
                             </div>

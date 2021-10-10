@@ -19,7 +19,10 @@ class MedicoConsultaController extends Controller
 
     public function historicoPaciente(int $pacienteId)
     {
-        $consultas = Consulta::where('medico_id', Auth::id())->where('paciente_id', $pacienteId)->get();
+        $consultas = Consulta::where('medico_id', Auth::id())
+                            ->where('paciente_id', $pacienteId)
+                            ->where('data', '<', date('Y-m-d H:i', strtotime("-60 minutes", strtotime("now"))))
+                            ->get();
 
         return DataTables::of($consultas)->make(true);        
     }

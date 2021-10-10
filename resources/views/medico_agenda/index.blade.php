@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <form action="{{ url('gerenciar/agenda') }}" method="get">
                         <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-md-6">
                                 <label for="medico">Médico</label>
                                 <select name="medico" class="form-control @error('medico') is-invalid @enderror">
                                     <option value="">Selecione</option>
@@ -37,7 +37,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-12 col-md-6">
                                 <label for="data">Dia</label>
                                 <input type="date" name="data" class="form-control" value="{{ $data }}">
                             </div>
@@ -75,44 +75,18 @@
                                                             <i class="fas fa-minus-circle"></i>
                                                         </button>
                                                     </a>
+                                                @elseif (strtotime($horario->data) > strtotime('now'))                                                 
+                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir">
+                                                        <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                                            data-target="#modalExclusao{{ $key }}">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>
+                                                    </a>
                                                 @endif
-                                                <a data-toggle="tooltip" data-placement="left" title="Excluir">
-                                                    <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target="#modalExclusao{{ $key }}">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </button>
-                                                </a>
                                             @endif
                                         </td>
                                     </tr>
-                                    @if (strtotime($horario->data) > strtotime('now')) 
-                                        <div class="modal fade" id="modalExclusao{{ $key }}" tabindex="-1"
-                                            aria-labelledby="modalExclusaoLabel" aria-hidden="true">
-                                            <form action="{{ url('/gerenciar/agenda', $horario->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">Confirmar exclusão!</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <h6>Deseja excluir o horário {{ date('H:i', strtotime($horario->data)) }}?</h6>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cancelar</button>
-                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    @endif
+                                    
                                     @if (!is_null($horario->paciente_id))
                                         <div class="modal fade" id="modalDesmarcarConsulta{{ $key }}" tabindex="-1"
                                             aria-labelledby="modalDesmarcarConsultaLabel" aria-hidden="true">
@@ -133,6 +107,34 @@
                                                                 Deseja desmarcar a consulta do {{ $horario->paciente->name }} as
                                                                 {{ date('H:i', strtotime($horario->data)) }}?                                                            
                                                             </h6>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @endif
+                                    @if (strtotime($horario->data) > strtotime('now')) 
+                                        <div class="modal fade" id="modalExclusao{{ $key }}" tabindex="-1"
+                                            aria-labelledby="modalExclusaoLabel" aria-hidden="true">
+                                            <form action="{{ url('/gerenciar/agenda', $horario->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Confirmar exclusão!</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h6>Deseja excluir o horário {{ date('H:i', strtotime($horario->data)) }}?</h6>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

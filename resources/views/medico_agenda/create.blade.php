@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <input type="hidden" name="medico" value="{{ $medico->id }}">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <label for="dias">Dias da semana</label>
                             <div class="form-group form-check mb-1">
                                 <input type="checkbox" class="form-check-input @error('dias') is-invalid @enderror"
@@ -62,7 +62,7 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label for="data_inicio">De</label>
                                 <input type="date" class="form-control @error('data_inicio') is-invalid @enderror"
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-6">
+                        <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label for="hora_inicio">Inicio</label>
                                 <input type="time" class="form-control @error('hora_inicio') is-invalid @enderror"
