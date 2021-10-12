@@ -3,7 +3,7 @@
     <div class="col-sm-6">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/minha-agenda">Minha Agenda</a></li>
+            <li class="breadcrumb-item"><a href="/minhas-consultas">Minhas Consultas</a></li>
             <li class="breadcrumb-item active">Consulta</li>
         </ol>
     </div>
