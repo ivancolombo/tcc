@@ -28,7 +28,7 @@
                     <select name="tipo" class="form-control @error('tipo') is-invalid @enderror">
                         <option value="">Selecione</option>
                         <option value="admin" {{ old('tipo', $user->tipo) === 'admin'? 'selected' : '' }}>Administrador</option>
-                        <option value="secretaria" {{ old('tipo', $user->tipo) === 'secretaria'? 'selected' : '' }}>Secretária</option>
+                        <option value="secretaria" {{ old('tipo', $user->tipo) === 'secretaria'? 'selected' : '' }}>Assistente</option>
                     </select>
                     @error('tipo')
                         <small class="text-danger">{{ $message }}</small>

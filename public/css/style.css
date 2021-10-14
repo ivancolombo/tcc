@@ -1,3 +1,21 @@
+/* Alterar cor sidebar */
+[class*="sidebar-dark-"] {
+    background-color: #00995d!important;
+}
+
+.layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*=navbar]) {
+    background-color: #00995d!important;
+}
+
+[class*=sidebar-dark] .brand-link {
+    border-bottom: 1px solid #0b8756!important;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #047448!important;
+}
+
+/* fim Alterar cor sidebar */
 /* css campo foto do cadastro de medico e paciente */
 .profile-pic-wrapper {
     width: 100%;
