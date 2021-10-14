@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\models\Consulta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PacienteConsultaController extends Controller
 {
@@ -33,5 +34,20 @@ class PacienteConsultaController extends Controller
     {
         $consulta = Consulta::find($id);
         return view('paciente_consulta.video_chamada', compact('consulta'));
+    }
+
+    public function desmarcarConsulta($id)
+    {
+        $consulta = Consulta::with('medico')->find($id);
+
+        $medico = $consulta->medico->name;
+
+        $consulta->paciente_id = null;
+        $consulta->descricao_paciente = null;
+        $consulta->sala_id = null;
+        $consulta->save();
+
+        Session::flash("success", "Consulta com o {$medico} desmarcada com sucesso!");
+        return redirect()->back();
     }
 }

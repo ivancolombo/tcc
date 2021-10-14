@@ -24,7 +24,7 @@
             </form>
             <hr>
             <div class="row pt-1 d-flex justify-content-center">
-                @forelse ($consultas as $consulta)
+                @forelse ($consultas as $key => $consulta)
                     <div class="col-12 col-sm-6 col-md-6 col-xl-4 d-flex align-items-stretch flex-column">
                         <div class="card bg-light d-flex flex-fill">
                             <div class="card-header text-muted border-bottom-0"></div>
@@ -55,7 +55,42 @@
                             <div class="card-footer">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="text-muted text-sm mb-1"><b>Horario: </b> {{ date('H:i', strtotime($consulta->data)) }} </p>
+                                    @if (date('Y-m-d H:i', strtotime("+1 day", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)))                                        
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal"
+                                            data-target="#modalDesmarcarConsulta{{ $key }}">
+                                            <i class="fas fa-minus-circle"></i> Desmarcar
+                                        </button>                                        
 
+                                        <div class="modal fade" id="modalDesmarcarConsulta{{ $key }}" tabindex="-1"
+                                            aria-labelledby="modalDesmarcarConsultaLabel" aria-hidden="true">
+                                            <form action="{{ url('/minhas-consultas',$consulta->id) }}" method="post">
+                                                @csrf
+                                                @method('patch')
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Desmarcar Consulta!</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h6>
+                                                                Deseja desmarcar a consulta com o médico {{ $consulta->medico->name }} dia
+                                                                {{ date('d/m/Y H:i', strtotime($consulta->data)) }}?                                                            
+                                                            </h6>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>                                    
+                                    @endif
                                     @if (date('Y-m-d H:i', strtotime("+10 minutes", strtotime("now"))) >= date('Y-m-d H:i', strtotime($consulta->data)) && 
                                         date('Y-m-d H:i', strtotime("-30 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)))
                                         <a href="{{url('minhas-consultas', $consulta->id)}}" class="btn btn-sm btn-success"> 

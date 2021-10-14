@@ -10,6 +10,12 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MedicoConsultaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('can:medico');
+    }
+
     public function index(int $id)
     {
         $consulta = Consulta::with('paciente', 'paciente.paciente', 'paciente.paciente.endereco')->find($id);

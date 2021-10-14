@@ -107,8 +107,7 @@ class MedicoAgendaController extends Controller
             Consulta::insert($consultas);
             DB::commit();
         } catch (\Throwable $th) {
-            DB::rollBack();
-            dd($th);
+            DB::rollBack();            
         }
         Session::flash("success", "Agenda cadastrada com sucesso!");
         return redirect('/gerenciar/agenda?medico='.$validatedData['medico']);
@@ -126,8 +125,8 @@ class MedicoAgendaController extends Controller
 
     public function desmarcarConsulta($id)
     {
-        $consulta = Consulta::with('paciente.user')->find($id);
-        $paciente = $consulta->paciente->user->name;
+        $consulta = Consulta::with('paciente')->find($id);
+        $paciente = $consulta->paciente->name;
 
         $consulta->paciente_id = null;
         $consulta->descricao_paciente = null;
