@@ -35,10 +35,11 @@ class MedicoConsultaController extends Controller
 
     public function finalizarConsulta(int $id, Request $request)
     {
-        $consulta = Consulta::find($id);
+        $consulta = Consulta::find($id);        
 
         $consulta->update([
-            'descricao_medico' => $request->observacao
+            'descricao_medico' => $request->observacao,
+            'status' => true
         ]);
         
         Session::flash('success', 'Consulta finalizada!');

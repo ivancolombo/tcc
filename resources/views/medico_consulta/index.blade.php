@@ -95,13 +95,36 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Finalizar consulta</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#finalizarConsulta">Finalizar consulta</button>
                     </div>
                 </div>
+
+                <div class="modal fade" id="finalizarConsulta" tabindex="-1" aria-labelledby="finalizarConsultaLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Finalizar Consulta!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Deseja finalizar a consulta?</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-labelledby="modalDetalhesTitulo" aria-hidden="true">
+        <div class="modal fade" id="modalDetalhes" tabindex="-1" aria-labelledby="modalDetalhesTitulo"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -202,9 +225,9 @@
 
                 $('#modalDetalhesTitulo').text('Detalhes consulta dia ' + data.data);
                 $('#descricao_paciente').text(data.descricao_paciente ?? '-');
-                $('#descricao_medico').text(data.descricao_medico ?? '-');                
+                $('#descricao_medico').text(data.descricao_medico ?? '-');
 
-                $('#modalDetalhes').modal('show');                
+                $('#modalDetalhes').modal('show');
             });
 
         });

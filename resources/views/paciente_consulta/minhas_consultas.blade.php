@@ -92,7 +92,9 @@
                                         </div>                                    
                                     @endif
                                     @if (date('Y-m-d H:i', strtotime("+10 minutes", strtotime("now"))) >= date('Y-m-d H:i', strtotime($consulta->data)) && 
-                                        date('Y-m-d H:i', strtotime("-30 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)))
+                                        date('Y-m-d H:i', strtotime("-30 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)) && 
+                                        $consulta->status === false
+                                        )
                                         <a href="{{url('minhas-consultas', $consulta->id)}}" class="btn btn-sm btn-success"> 
                                             <i class="fas fa-video mr-1"></i> Iniciar
                                         </a>
