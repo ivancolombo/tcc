@@ -60,7 +60,7 @@
                             @else
                                 @forelse ($horarios as $key => $horario)
                                     <tr class="row pl-2">
-                                        <td class="col-10 text-center mt-1 mb-1 @if (is_null($horario->paciente_id)) bg-success @else bg-secondary @endif">
+                                        <td class="col-10 text-center mt-1 mb-1 horario @if (!is_null($horario->paciente_id)) bg-primary @elseif (is_null($horario->paciente_id) &&strtotime($horario->data) < strtotime('now')) bg-secondary @else bg-success @endif">
                                             {{ date('H:i', strtotime($horario->data)) }}
                                             @if (!is_null($horario->paciente_id))
                                                 - {{ $horario->paciente->name }}

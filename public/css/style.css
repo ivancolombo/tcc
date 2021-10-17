@@ -16,6 +16,21 @@
 }
 
 /* fim Alterar cor sidebar */
+
+/* cores listagem de horarios */
+.bg-success.horario {
+    background-color: #00995dd6!important;
+}
+
+.bg-primary.horario {
+    background-color: #0f78e9cf!important;
+}
+
+.bg-secondary.horario {
+    background-color: #5a60649e!important;
+}
+/* fim cores listagem de horarios */
+
 /* css campo foto do cadastro de medico e paciente */
 .profile-pic-wrapper {
     width: 100%;
