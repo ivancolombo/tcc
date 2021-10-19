@@ -18,7 +18,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-Route::post('/aceitar-termos', 'HomeController@aceitarTermo');
+
+Route::group(['prefix' => 'termos'], function () {
+    Route::get('/', 'TermoController@index');
+    Route::post('/', 'TermoController@aceitarTermo');
+});
 
 Route::group(['prefix' => 'gerenciar'], function () {
     Route::group(['prefix' => 'medicos'], function () {

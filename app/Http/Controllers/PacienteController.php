@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PacienteRequest;
 use App\Models\User;
 use App\Services\ServiceUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,6 +14,7 @@ class PacienteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.termo');
         $this->middleware('can:admin');
     }
     

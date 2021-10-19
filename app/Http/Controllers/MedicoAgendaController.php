@@ -16,6 +16,7 @@ class MedicoAgendaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.termo');
         $this->middleware('can:secretaria')->except('agendar', 'horarios', 'minhaAgenda');
         $this->middleware('can:medico')->only('minhaAgenda');
     }

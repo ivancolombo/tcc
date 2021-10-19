@@ -16,6 +16,7 @@ class MedicoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.termo');
         $this->middleware('can:admin')->except('listForPatients');
     }
     
