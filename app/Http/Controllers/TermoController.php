@@ -15,6 +15,11 @@ class TermoController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
+        if (($user->tipo === 'paciente' || $user->tipo === 'medico') && $user->termo === true) {            
+            return redirect('/');
+        }
+
         return view('termo.index');
     }
 
