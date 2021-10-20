@@ -30,6 +30,7 @@ class MedicoAgendaController extends Controller
                              ->where('paciente_id', '!=', null)
                              ->where('data', '>=', $data.' 00:00:00')
                              ->where('data', '<=', $data.' 23:59:00')
+                             ->orderBy('data')
                              ->get();        
 
         return view('medico_agenda.minha_agenda', compact('consultas', 'data'));

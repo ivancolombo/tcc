@@ -24,6 +24,7 @@ class PacienteConsultaController extends Controller
                              ->where('paciente_id', Auth::id())
                              ->where('data', '>=', $data.' 00:00:00')
                              ->where('data', '<=', $data.' 23:59:00')
+                             ->orderBy('data')
                              ->get();
 
         $consulta = $consultas->first();

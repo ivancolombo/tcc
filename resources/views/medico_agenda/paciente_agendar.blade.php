@@ -38,7 +38,7 @@
                         <tbody>
                                 @forelse ($horarios as $key => $horario)
                                     <tr class="row pl-2">
-                                        <td class="col-10 text-center mt-1 mb-1 @if (strtotime($horario->data) > strtotime('now')) bg-success @else bg-secondary @endif">
+                                        <td class="col-10 text-center mt-1 mb-1 horario @if (strtotime($horario->data) > strtotime('now')) bg-success @else bg-secondary @endif">
                                             {{ date('H:i', strtotime($horario->data)) }}
                                         </td>
                                         <td class="col-2 text-center">

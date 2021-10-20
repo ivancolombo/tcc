@@ -29,6 +29,7 @@ class MedicoConsultaController extends Controller
         $consultas = Consulta::where('medico_id', Auth::id())
                             ->where('paciente_id', $pacienteId)
                             ->where('data', '<', date('Y-m-d H:i', strtotime("-60 minutes", strtotime("now"))))
+                            ->orderBy('data')
                             ->get();
 
         return DataTables::of($consultas)->make(true);        
