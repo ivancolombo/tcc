@@ -62,15 +62,12 @@
         </div>
     </div>
 @endsection
-{{-- @section('css')
+@section('css')
     <style>
         #app {
-            background-image: url("");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position-x: center;
-            opacity: 0.8;
-            filter: grayscale(60%);
+            background-image: url("/storage/login/imagem-login.webp");                 
+            background-position: center;
+            background-size: cover;            
         }
     </style>
-@endsection --}}
+@endsection
