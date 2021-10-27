@@ -283,7 +283,7 @@ return [
             'url'    => 'gerenciar/pacientes',
             'icon'   => 'fas fa-fw fa-user-injured',  
             'active' => ['gerenciar/pacientes/*'],  
-            'can'    => 'admin'        
+            'can'    => 'gerenciar-paciente'        
         ],
         // [
         //     'header' => 'Site',

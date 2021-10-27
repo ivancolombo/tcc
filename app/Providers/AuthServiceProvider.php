@@ -60,5 +60,12 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
+        $gate->define('gerenciar-paciente', function(User $user) {
+            if($user->tipo == 'secretaria' || $user->tipo == 'admin') {
+                return true;
+            }
+            return false;
+        });
+
     }
 }

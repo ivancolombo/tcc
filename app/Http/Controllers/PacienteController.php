@@ -15,7 +15,7 @@ class PacienteController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('check.termo');
-        $this->middleware('can:admin');
+        $this->middleware('can:gerenciar-paciente');
     }
     
     public function index()
