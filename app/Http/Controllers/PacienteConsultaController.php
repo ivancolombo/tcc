@@ -32,12 +32,6 @@ class PacienteConsultaController extends Controller
         return view('paciente_consulta.minhas_consultas', compact('consultas', 'data'));
     }
 
-    public function videoChamada(int $id)
-    {
-        $consulta = Consulta::find($id);
-        return view('paciente_consulta.video_chamada', compact('consulta'));
-    }
-
     public function desmarcarConsulta($id)
     {
         $consulta = Consulta::with('medico')->find($id);
@@ -52,4 +46,12 @@ class PacienteConsultaController extends Controller
         Session::flash("success", "Consulta com o {$medico} desmarcada com sucesso!");
         return redirect()->back();
     }
+
+    public function videoChamada(int $id)
+    {
+        $consulta = Consulta::find($id);
+        $this->authorize('permissao-consulta', $consulta);
+
+        return view('paciente_consulta.video_chamada', compact('consulta'));
+    }    
 }

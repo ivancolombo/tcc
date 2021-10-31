@@ -20,7 +20,7 @@ class MedicoConsultaController extends Controller
     public function index(int $id)
     {
         $consulta = Consulta::with('paciente', 'paciente.paciente', 'paciente.paciente.endereco')->find($id);
-
+        $this->authorize('permissao-consulta', $consulta);
         return view('medico_consulta.index', compact('consulta'));
     }
 
@@ -52,6 +52,7 @@ class MedicoConsultaController extends Controller
     public function videoChamada(int $id)
     {
         $consulta = Consulta::find($id);
+        $this->authorize('permissao-consulta', $consulta);
         return view('medico_consulta.video_chamada', compact('consulta'));
     }
 }

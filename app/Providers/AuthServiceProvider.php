@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\models\Consulta;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -62,6 +63,17 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('gerenciar-paciente', function(User $user) {
             if($user->tipo == 'secretaria' || $user->tipo == 'admin') {
+                return true;
+            }
+            return false;
+        });
+
+        $gate->define('permissao-consulta', function(User $user, Consulta $consulta) {
+            
+            if((($user->tipo === 'paciente' && $consulta->paciente_id === $user->id) || ($user->tipo === 'medico' && $consulta->medico_id === $user->id)) 
+                && (date('Y-m-d H:i', strtotime("+10 minutes", strtotime("now"))) >= date('Y-m-d H:i', strtotime($consulta->data)) 
+                && date('Y-m-d H:i', strtotime("-30 minutes", strtotime("now"))) <= date('Y-m-d H:i', strtotime($consulta->data)) 
+                && $consulta->status === false )) {
                 return true;
             }
             return false;

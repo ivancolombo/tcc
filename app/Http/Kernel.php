@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckPermissionConsulta;
 use App\Http\Middleware\CheckTermo;
 use App\Http\Middleware\UserTipo;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
