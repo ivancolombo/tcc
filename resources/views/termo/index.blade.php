@@ -18,7 +18,7 @@
                             <div>
                                 <p class="font-weight-bold">Termo de consentimento para armazenamento e tratamento de dados pessoais em conformidade com
                                 a LGPD Lei nº 13.709 – Lei Geral de Proteção de Dados Pessoais (LGPD).</p>
-                                <p>Temos o compromisso em salvaguardar a sua privacidade ao utilizar o NOME DO SISTEMA.</p>
+                                <p>Temos o compromisso em salvaguardar a sua privacidade ao utilizar o protótipo.</p>
                                 <p>Este termo tem como finalidade explicitar a nossa política de tratamento de dados,
                                 informando sobre dados coletados e sua utilização.</p>
                                 <p>Ao acessar nosso site, você declara o seu EXPRESSO CONSENTIMENTO sobre o armazenamento das
